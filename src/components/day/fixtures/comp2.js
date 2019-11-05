@@ -19,7 +19,11 @@ export default {
     'year': {
       'required': true,
       'placeholder': '',
+<<<<<<< HEAD
       'type': 'text'
+=======
+      'type': 'number'
+>>>>>>> upstream/master
     },
     'month': {
       'required': true,
@@ -29,7 +33,11 @@ export default {
     'day': {
       'required': true,
       'placeholder': '',
+<<<<<<< HEAD
       'type': 'text'
+=======
+      'type': 'number'
+>>>>>>> upstream/master
     }
   },
   'key': 'date',

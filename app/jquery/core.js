@@ -27,7 +27,11 @@ define( [
 "use strict";
 
 var
+<<<<<<< HEAD
 	version = "3.3.1",
+=======
+	version = "3.4.1",
+>>>>>>> upstream/master
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -156,17 +160,26 @@ jQuery.extend = jQuery.fn.extend = function() {
 
 			// Extend the base object
 			for ( name in options ) {
+<<<<<<< HEAD
 				src = target[ name ];
 				copy = options[ name ];
 
 				// Prevent never-ending loop
 				if ( target === copy ) {
+=======
+				copy = options[ name ];
+
+				// Prevent Object.prototype pollution
+				// Prevent never-ending loop
+				if ( name === "__proto__" || target === copy ) {
+>>>>>>> upstream/master
 					continue;
 				}
 
 				// Recurse if we're merging plain objects or arrays
 				if ( deep && copy && ( jQuery.isPlainObject( copy ) ||
 					( copyIsArray = Array.isArray( copy ) ) ) ) {
+<<<<<<< HEAD
 
 					if ( copyIsArray ) {
 						copyIsArray = false;
@@ -175,6 +188,19 @@ jQuery.extend = jQuery.fn.extend = function() {
 					} else {
 						clone = src && jQuery.isPlainObject( src ) ? src : {};
 					}
+=======
+					src = target[ name ];
+
+					// Ensure proper type for the source value
+					if ( copyIsArray && !Array.isArray( src ) ) {
+						clone = [];
+					} else if ( !copyIsArray && !jQuery.isPlainObject( src ) ) {
+						clone = {};
+					} else {
+						clone = src;
+					}
+					copyIsArray = false;
+>>>>>>> upstream/master
 
 					// Never move original objects, clone them
 					target[ name ] = jQuery.extend( deep, clone, copy );
@@ -227,9 +253,12 @@ jQuery.extend( {
 	},
 
 	isEmptyObject: function( obj ) {
+<<<<<<< HEAD
 
 		/* eslint-disable no-unused-vars */
 		// See https://github.com/eslint/eslint/issues/6125
+=======
+>>>>>>> upstream/master
 		var name;
 
 		for ( name in obj ) {
@@ -239,8 +268,13 @@ jQuery.extend( {
 	},
 
 	// Evaluates a script in a global context
+<<<<<<< HEAD
 	globalEval: function( code ) {
 		DOMEval( code );
+=======
+	globalEval: function( code, options ) {
+		DOMEval( code, { nonce: options && options.nonce } );
+>>>>>>> upstream/master
 	},
 
 	each: function( obj, callback ) {

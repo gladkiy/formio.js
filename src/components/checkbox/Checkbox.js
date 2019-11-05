@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import BaseComponent from '../base/Base';
+import Field from '../_classes/field/Field';
 
-export default class CheckBoxComponent extends BaseComponent {
+export default class CheckBoxComponent extends Field {
   static schema(...extend) {
-    return BaseComponent.schema({
+    return Field.schema({
       type: 'checkbox',
       inputType: 'checkbox',
       label: 'Checkbox',
@@ -19,7 +19,7 @@ export default class CheckBoxComponent extends BaseComponent {
     return {
       title: 'Checkbox',
       group: 'basic',
-      icon: 'fa fa-check-square',
+      icon: 'check-square',
       documentation: 'http://help.form.io/userguide/#checkbox',
       weight: 50,
       schema: CheckBoxComponent.schema()
@@ -32,13 +32,31 @@ export default class CheckBoxComponent extends BaseComponent {
 
   get defaultValue() {
     return this.component.name ? '' : (this.component.defaultValue || false).toString() === 'true';
+<<<<<<< HEAD
+  }
+
+  get hasSetValue() {
+    return this.hasValue();
+=======
+>>>>>>> upstream/master
+  }
+
+  get labelClass() {
+    let className = '';
+    if (this.isInputComponent
+      && !this.options.inputsOnly
+      && this.component.validate
+      && this.component.validate.required) {
+      className += ' field-required';
+    }
+    return `${className}`;
   }
 
   get hasSetValue() {
     return this.hasValue();
   }
 
-  elementInfo() {
+  get inputInfo() {
     const info = super.elementInfo();
     info.type = 'input';
     info.changeEvent = 'click';
@@ -48,9 +66,12 @@ export default class CheckBoxComponent extends BaseComponent {
       info.attr.name = `data[${this.component.name}]`;
     }
     info.attr.value = this.component.value ? this.component.value : 0;
+    info.label = this.t(this.component.label);
+    info.labelClass = this.labelClass;
     return info;
   }
 
+<<<<<<< HEAD
   build() {
     if (this.viewOnly) {
       return this.viewOnlyBuild();
@@ -72,12 +93,23 @@ export default class CheckBoxComponent extends BaseComponent {
     }
     this.autofocus();
     this.attachLogic();
+=======
+  get labelInfo() {
+    return {
+      hidden: true
+    };
+>>>>>>> upstream/master
   }
 
-  get emptyValue() {
-    return false;
+  render() {
+    return super.render(this.renderTemplate('checkbox', {
+      input: this.inputInfo,
+      checked: this.dataValue,
+      tooltip: this.interpolate(this.t(this.component.tooltip) || '').replace(/(?:\r\n|\r|\n)/g, '<br />')
+    }));
   }
 
+<<<<<<< HEAD
   isEmpty(value) {
     return super.isEmpty(value) || value === false;
   }
@@ -86,59 +118,31 @@ export default class CheckBoxComponent extends BaseComponent {
     let className = `form-check ${this.className}`;
     if (!this.labelIsHidden()) {
       className += ` ${this.component.inputType || 'checkbox'}`;
+=======
+  attach(element) {
+    this.loadRefs(element, { input: 'multiple' });
+    this.input = this.refs.input[0];
+    if (this.refs.input) {
+      this.addEventListener(this.input, this.inputInfo.changeEvent, () => this.updateValue(null, {
+        modified: true
+      }));
+      this.addShortcut(this.input);
+>>>>>>> upstream/master
     }
-    this.element = this.ce('div', {
-      id: this.id,
-      class: className
-    });
-    this.element.component = this;
+    return super.attach(element);
   }
 
-  labelOnTheTopOrLeft() {
-    return ['top', 'left'].includes(this.component.labelPosition);
-  }
-
-  labelOnTheTopOrBottom() {
-    return ['top', 'bottom'].includes(this.component.labelPosition);
-  }
-
-  setInputLabelStyle(label) {
-    if (this.component.labelPosition === 'left') {
-      _.assign(label.style, {
-        textAlign: 'center',
-        paddingLeft: 0,
-      });
-    }
-
-    if (this.labelOnTheTopOrBottom()) {
-      _.assign(label.style, {
-        display: 'block',
-        textAlign: 'center',
-        paddingLeft: 0,
-      });
+  detach(element) {
+    if (element && this.input) {
+      this.removeShortcut(this.input);
     }
   }
 
-  setInputStyle(input) {
-    if (!input) {
-      return;
-    }
-    if (this.component.labelPosition === 'left') {
-      _.assign(input.style, {
-        position: 'initial',
-        marginLeft: '7px'
-      });
-    }
-
-    if (this.labelOnTheTopOrBottom()) {
-      _.assign(input.style, {
-        width: '100%',
-        position: 'initial',
-        marginLeft: 0
-      });
-    }
+  get emptyValue() {
+    return false;
   }
 
+<<<<<<< HEAD
   createLabel(container, input) {
     const isLabelHidden = this.labelIsHidden();
     let className = 'control-label form-check-label';
@@ -189,6 +193,17 @@ export default class CheckBoxComponent extends BaseComponent {
     return input;
   }
 
+=======
+  isEmpty(value = this.dataValue) {
+    return super.isEmpty(value) || value === false;
+  }
+
+  /**
+   *
+   * @param value {*}
+   * @returns {*}
+   */
+>>>>>>> upstream/master
   set dataValue(value) {
     const setValue = (super.dataValue = value);
     if (this.component.name) {
@@ -211,9 +226,9 @@ export default class CheckBoxComponent extends BaseComponent {
 
   getValueAt(index) {
     if (this.component.name) {
-      return this.inputs[index].checked ? this.component.value : '';
+      return this.refs.input[index].checked ? this.component.value : '';
     }
-    return !!this.inputs[index].checked;
+    return !!this.refs.input[index].checked;
   }
 
   getValue() {
@@ -222,7 +237,7 @@ export default class CheckBoxComponent extends BaseComponent {
       return value ? this.setCheckedState(value) : this.setCheckedState(this.dataValue);
     }
     else {
-      return value;
+      return (value === '') ? this.dataValue : !!value;
     }
   }
 
@@ -260,18 +275,22 @@ export default class CheckBoxComponent extends BaseComponent {
   }
 
   setValue(value, flags) {
-    flags = this.getFlags.apply(this, arguments);
+    flags = flags || {};
     if (this.setCheckedState(value) !== undefined) {
-      return this.updateValue(flags);
+      return this.updateValue(value, flags);
     }
+    return false;
   }
 
-  getView(value) {
+  getValueAsString(value) {
     return value ? 'Yes' : 'No';
   }
+<<<<<<< HEAD
 
   destroy() {
     super.destroy();
     this.removeShortcut();
   }
+=======
+>>>>>>> upstream/master
 }

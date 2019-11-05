@@ -2,7 +2,11 @@
   "_args": [
     [
       "font-awesome@4.7.0",
+<<<<<<< HEAD
       "/Users/travistidwell/Desktop/formio.js"
+=======
+      "/Users/travistidwell/Documents/formio/modules/formio.js"
+>>>>>>> upstream/master
     ]
   ],
   "_development": true,
@@ -27,7 +31,11 @@
   ],
   "_resolved": "https://registry.npmjs.org/font-awesome/-/font-awesome-4.7.0.tgz",
   "_spec": "4.7.0",
+<<<<<<< HEAD
   "_where": "/Users/travistidwell/Desktop/formio.js",
+=======
+  "_where": "/Users/travistidwell/Documents/formio/modules/formio.js",
+>>>>>>> upstream/master
   "author": {
     "name": "Dave Gandy",
     "email": "dave@fontawesome.io",

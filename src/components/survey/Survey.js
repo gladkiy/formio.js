@@ -1,10 +1,10 @@
 import _ from 'lodash';
-import BaseComponent from '../base/Base';
+import Field from '../_classes/field/Field';
 import { boolValue } from '../../utils/utils';
 
-export default class SurveyComponent extends BaseComponent {
+export default class SurveyComponent extends Field {
   static schema(...extend) {
-    return BaseComponent.schema({
+    return Field.schema({
       type: 'survey',
       label: 'Survey',
       key: 'survey',
@@ -17,8 +17,8 @@ export default class SurveyComponent extends BaseComponent {
     return {
       title: 'Survey',
       group: 'advanced',
-      icon: 'fa fa-list',
-      weight: 170,
+      icon: 'list',
+      weight: 110,
       documentation: 'http://help.form.io/userguide/#survey',
       schema: SurveyComponent.schema()
     };
@@ -28,21 +28,11 @@ export default class SurveyComponent extends BaseComponent {
     return SurveyComponent.schema();
   }
 
-  build() {
-    if (this.viewOnly) {
-      this.viewOnlyBuild();
-    }
-    else {
-      this.createElement();
-      const labelAtTheBottom = this.component.labelPosition === 'bottom';
-      if (!labelAtTheBottom) {
-        this.createLabel(this.element);
-      }
-      this.table = this.ce('table', {
-        class: 'table table-striped table-bordered'
-      });
-      this.setInputStyles(this.table);
+  render() {
+    return super.render(this.renderTemplate('survey'));
+  }
 
+<<<<<<< HEAD
       // Build header.
       const thead = this.ce('thead');
       const thr = this.ce('tr');
@@ -83,32 +73,50 @@ export default class SurveyComponent extends BaseComponent {
       this.errorContainer = this.element;
       if (labelAtTheBottom) {
         this.createLabel(this.element);
+=======
+  attach(element) {
+    this.loadRefs(element, { input: 'multiple' });
+    const superAttach = super.attach(element);
+    this.refs.input.forEach((input) => {
+      if (this.disabled) {
+        input.setAttribute('disabled', 'disabled');
+>>>>>>> upstream/master
       }
-      this.createDescription(this.element);
-      this.restoreValue();
-      if (this.shouldDisable) {
-        this.disabled = true;
+      else {
+        this.addEventListener(input, 'change', () => this.updateValue(null, {
+          modified: true
+        }));
       }
+<<<<<<< HEAD
       this.autofocus();
     }
 
     this.attachLogic();
+=======
+    });
+    this.setValue(this.dataValue);
+    return superAttach;
+>>>>>>> upstream/master
   }
 
   setValue(value, flags) {
-    flags = this.getFlags.apply(this, arguments);
+    flags = flags || {};
     if (!value) {
-      return;
+      return false;
     }
 
     _.each(this.component.questions, (question) => {
+<<<<<<< HEAD
       _.each(this.inputs, (input) => {
+=======
+      _.each(this.refs.input, (input) => {
+>>>>>>> upstream/master
         if (input.name === this.getInputName(question)) {
           input.checked = (input.value === value[question.value]);
         }
       });
     });
-    this.updateValue(flags);
+    return this.updateValue(value, flags);
   }
 
   get emptyValue() {
@@ -116,12 +124,16 @@ export default class SurveyComponent extends BaseComponent {
   }
 
   getValue() {
-    if (this.viewOnly) {
+    if (this.viewOnly || !this.refs.input || !this.refs.input.length) {
       return this.dataValue;
     }
     const value = {};
     _.each(this.component.questions, (question) => {
+<<<<<<< HEAD
       _.each(this.inputs, (input) => {
+=======
+      _.each(this.refs.input, (input) => {
+>>>>>>> upstream/master
         if (input.checked && (input.name === this.getInputName(question))) {
           value[question.value] = input.value;
           return false;
@@ -129,6 +141,17 @@ export default class SurveyComponent extends BaseComponent {
       });
     });
     return value;
+  }
+
+  set disabled(disabled) {
+    super.disabled = disabled;
+    _.each(this.refs.input, (input) => {
+      input.disabled = true;
+    });
+  }
+
+  get disabled() {
+    return super.disabled;
   }
 
   validateRequired(setting, value) {
@@ -139,35 +162,8 @@ export default class SurveyComponent extends BaseComponent {
       result && Boolean(value[question.value]), true);
   }
 
-  getView(value) {
-    if (!value) {
-      return '';
-    }
-    const table = this.ce('table', {
-      class: 'table table-striped table-bordered table-condensed'
-    });
-    const tbody = this.ce('tbody');
-
-    _.each(value, (value, question) => {
-      const row = this.ce('tr');
-
-      const questionCell = this.ce('th');
-      const valueCell = this.ce('td');
-
-      const questionText = _.find(this.component.questions, ['value', question]).label;
-      const valueText = _.find(this.component.values, ['value', value]).label;
-
-      questionCell.appendChild(this.text(questionText));
-      valueCell.appendChild(this.text(valueText));
-
-      row.appendChild(questionCell);
-      row.appendChild(valueCell);
-
-      tbody.appendChild(row);
-    });
-
-    table.appendChild(tbody);
-    return table.outerHTML;
+  getInputName(question) {
+    return `${this.options.name}[${question.value}]`;
   }
 
   getInputName(question) {

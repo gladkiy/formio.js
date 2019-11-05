@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import baseEditForm from '../base/Base.form';
 
 import UnknownEditDisplay from './editForm/Unknown.edit.display';
@@ -29,4 +30,24 @@ export default function() {
       ignore: true
     }
   ]);
+=======
+import UnknownEditDisplay from './editForm/Unknown.edit.display';
+export default function() {
+  return {
+    components: [
+      {
+        type: 'tabs',
+        key: 'tabs',
+        components: [
+          {
+            label: 'Custom',
+            key: 'display',
+            weight: 0,
+            components: UnknownEditDisplay
+          }
+        ]
+      }
+    ]
+  };
+>>>>>>> upstream/master
 }

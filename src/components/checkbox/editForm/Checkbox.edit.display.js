@@ -1,23 +1,14 @@
 import BuilderUtils from '../../../utils/builder';
+import _ from 'lodash';
 
 export default [
   {
-    type: 'select',
-    input: true,
-    label: 'Label Position',
     key: 'labelPosition',
-    tooltip: 'Position for the label for this field.',
-    defaultValue: 'right',
-    dataSrc: 'values',
-    weight: 20,
-    data: {
-      values: [
-        { label: 'Top', value: 'top' },
-        { label: 'Left', value: 'left' },
-        { label: 'Right', value: 'right' },
-        { label: 'Bottom', value: 'bottom' }
-      ]
-    }
+    ignore: true,
+  },
+  {
+    key: 'placeholder',
+    ignore: true,
   },
   {
     type: 'select',
@@ -27,11 +18,17 @@ export default [
     key: 'shortcut',
     tooltip: 'Shortcut for this component.',
     dataSrc: 'custom',
+    valueProperty: 'value',
+    customDefaultValue: () => '',
+    template: '{{ item.label }}',
     data: {
-      custom(values, component, data, row, utils, instance, form) {
-        return BuilderUtils.getAvailableShortcuts(form, component);
-      }
-    }
+      custom(context) {
+        return BuilderUtils.getAvailableShortcuts(
+          _.get(context, 'instance.options.editForm', {}),
+          _.get(context, 'instance.options.editComponent', {})
+        );
+      },
+    },
   },
   {
     type: 'select',
@@ -44,9 +41,9 @@ export default [
     data: {
       values: [
         { label: 'Checkbox', value: 'checkbox' },
-        { label: 'Radio', value: 'radio' }
-      ]
-    }
+        { label: 'Radio', value: 'radio' },
+      ],
+    },
   },
   {
     type: 'textfield',
@@ -56,8 +53,8 @@ export default [
     tooltip: 'The key used to trigger the radio button toggle.',
     weight: 420,
     conditional: {
-      json: { '===': [{ var: 'data.inputType' }, 'radio'] }
-    }
+      json: { '===': [{ var: 'data.inputType' }, 'radio'] },
+    },
   },
   {
     type: 'textfield',
@@ -67,7 +64,13 @@ export default [
     tooltip: 'The value used with this radio button.',
     weight: 430,
     conditional: {
+<<<<<<< HEAD
       json: { '===': [{ var: 'data.inputType' }, 'radio'] }
     }
   }
+=======
+      json: { '===': [{ var: 'data.inputType' }, 'radio'] },
+    },
+  },
+>>>>>>> upstream/master
 ];

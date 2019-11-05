@@ -1,42 +1,85 @@
 import WebformBuilder from './WebformBuilder';
+import Webform from './Webform';
 import _ from 'lodash';
 
 export default class WizardBuilder extends WebformBuilder {
-  setBuilderElement() {
-    return super.setBuilderElement().then(() => {
-      const buildRegion = this.ce('div', {
-        class: 'col-xs-8 col-sm-9 col-md-10 formarea'
-      });
+  constructor() {
+    let element, options;
+    if (arguments[0] instanceof HTMLElement || arguments[1]) {
+      element = arguments[0];
+      options = arguments[1];
+    }
+    else {
+      options = arguments[0];
+    }
+    // Reset skipInit in case PDFBuilder has set it.
+    options.skipInit = false;
 
-      this.element.setAttribute('class', '');
-      this.element.noDrop = true;
-      this.wrapper.insertBefore(buildRegion, this.element);
-      this.pageBar = this.ce('ol', {
-        class: 'breadcrumb'
-      });
+    super(element, options);
 
-      buildRegion.appendChild(this.pageBar);
-      buildRegion.appendChild(this.element);
-      this.currentPage = 0;
-    });
-  }
+    this._form = {
+      components: [
+        this.getPageConfig(1),
+      ],
+    };
 
-  get currentPage() {
-    return this._currentPage || 0;
-  }
+    this.page = 0;
 
-  set currentPage(currentPage) {
-    this._currentPage = currentPage;
+    this.options.hooks.attachPanel = (element, component) => {
+      if (component.refs.removeComponent) {
+        this.addEventListener(component.refs.removeComponent, 'click', () => {
+          const pageIndex = this.pages.findIndex((page) => page.key === component.key);
+          const componentIndex = this._form.components.findIndex((comp) => comp.key === component.key);
+          if (pageIndex !== -1) {
+            this.removePage(pageIndex, componentIndex);
+          }
+        });
+      }
+    };
+
+    const originalRenderComponentsHook = this.options.hooks.renderComponents;
+    this.options.hooks.renderComponents = (html, { components, self }) => {
+      if (self.type === 'form' && !self.root) {
+        return html;
+      }
+      else {
+        return originalRenderComponentsHook(html, { components, self });
+      }
+    };
+
+    const originalAttachComponentsHook = this.options.hooks.attachComponents;
+    this.options.hooks.attachComponents = (element, components, container, component) => {
+      if (component.type === 'form' && !component.root) {
+        return element;
+      }
+
+      return originalAttachComponentsHook(element, components, container, component);
+    };
+
+    // Wizard pages don't replace themselves in the right array. Do that here.
+    this.on('saveComponent', (component, originalComponent) => {
+      const webformComponents = this.webform.components.map(({ component }) => component);
+      if (this._form.components.includes(originalComponent)) {
+        this._form.components[this._form.components.indexOf(originalComponent)] = component;
+        this.rebuild();
+      }
+      else if (webformComponents.includes(originalComponent)) {
+        this._form.components.push(component);
+        this.rebuild();
+      }
+    }, true);
   }
 
   get pages() {
-    return _.filter(this.component.components, { type: 'panel' });
+    return _.filter(this._form.components, { type: 'panel' });
   }
 
-  addSubmitButton() {
-    // Do nothing...
+  get currentPage() {
+    const pages = this.pages;
+    return (pages && (pages.length >= this.page)) ? pages[this.page] : null;
   }
 
+<<<<<<< HEAD
   deleteComponent(component) {
     let cb;
     const isPage = this.components.includes(component);
@@ -51,9 +94,15 @@ export default class WizardBuilder extends WebformBuilder {
 
     if (isPage) {
       this.off('deleteComponent', cb);
+=======
+  set form(value) {
+    this._form = value;
+    if (!this._form.components || !Array.isArray(this._form.components)) {
+      this._form.components = [];
+>>>>>>> upstream/master
     }
-  }
 
+<<<<<<< HEAD
   addPage() {
     const pageNum = (this.pages.length + 1);
     const newPage = {
@@ -80,32 +129,56 @@ export default class WizardBuilder extends WebformBuilder {
       (index !== this.currentPage),
       this.getComponentState(component, state)
     ));
-  }
-
-  gotoPage(page) {
-    this.currentPage = page;
-    this.redraw();
-  }
-
-  /**
-   * Only show the current page.
-   *
-   * @return {Array}
-   */
-  get componentComponents() {
-    const components = this.pages;
-    components.nodrop = true;
-    return components;
-  }
-
-  buildPageBar() {
-    const pages = this.pages;
-
-    // Always ensure we have a single page.
-    if (!pages.length) {
-      return this.addPage();
+=======
+    if (this.pages.length === 0) {
+      const components = this._form.components.filter((component) => component.type !== 'button');
+      this._form.components = [this.getPageConfig(1, components)];
     }
+    this.rebuild();
+  }
 
+  get form() {
+    return this._form;
+>>>>>>> upstream/master
+  }
+
+  get schema() {
+    _.assign(this._form.components[this.page], this.webform._form.components[0]);
+    const webform = new Webform(this.options);
+    webform.form = this._form;
+    return webform.schema;
+  }
+
+  render() {
+    return this.renderTemplate('builderWizard', {
+      sidebar: this.renderTemplate('builderSidebar', {
+        scrollEnabled: this.sideBarScroll,
+        groupOrder: this.groupOrder,
+        groupId: `builder-sidebar-${this.id}`,
+        groups: this.groupOrder.map((groupKey) => this.renderTemplate('builderSidebarGroup', {
+          group: this.groups[groupKey],
+          groupKey,
+          groupId: `builder-sidebar-${this.id}`,
+          subgroups: this.groups[groupKey].subgroups.map((group) => this.renderTemplate('builderSidebarGroup', {
+            group,
+            groupKey: group.key,
+            groupId: `builder-sidebar-${groupKey}`,
+            subgroups: []
+          })),
+        })),
+      }),
+      pages: this.pages,
+      form: this.webform.render(),
+    });
+  }
+
+  attach(element) {
+    this.loadRefs(element, {
+      addPage: 'multiple',
+      gotoPage: 'multiple',
+    });
+
+<<<<<<< HEAD
     this.empty(this.pageBar);
     _.each(pages, (page, index) => {
       const pageLink = this.ce('span', {
@@ -116,11 +189,16 @@ export default class WizardBuilder extends WebformBuilder {
       }, this.text(page.title));
       this.pageBar.appendChild(this.ce('li', null, pageLink));
       this.addEventListener(pageLink, 'click', (event) => {
+=======
+    this.refs.addPage.forEach(link => {
+      this.addEventListener(link, 'click', (event) => {
+>>>>>>> upstream/master
         event.preventDefault();
-        this.gotoPage(index);
+        this.addPage();
       });
     });
 
+<<<<<<< HEAD
     const newPage = this.ce('span', {
       title: this.t('Create Page'),
       class: 'mr-2 badge badge-success bg-success label label-success wizard-page-label'
@@ -132,13 +210,82 @@ export default class WizardBuilder extends WebformBuilder {
     this.addEventListener(newPage, 'click', (event) => {
       event.preventDefault();
       this.addPage();
+=======
+    this.refs.gotoPage.forEach((link, index) => {
+      this.addEventListener(link, 'click', (event) => {
+        event.preventDefault();
+        this.setPage(index);
+      });
+>>>>>>> upstream/master
     });
 
-    this.pageBar.appendChild(this.ce('li', null, newPage));
+    return super.attach(element);
   }
 
+  rebuild() {
+    const page = this.currentPage;
+    this.webform.form = {
+      display: 'form',
+      type: 'form',
+      components: page ? [page] : [],
+    };
+    return this.redraw();
+  }
+
+  addPage() {
+    const pageNum = (this.pages.length + 1);
+    const newPage = this.getPageConfig(pageNum);
+    this._form.components.push(newPage);
+    this.emit('saveComponent', newPage);
+    return this.rebuild();
+  }
+
+  removePage(pageIndex, componentIndex) {
+    this._form.components.splice(componentIndex, 1);
+
+    if (pageIndex === this.pages.length) {
+      // If the last page is removed.
+      if (pageIndex === 0) {
+        this._form.components.push(this.getPageConfig(1));
+        return this.rebuild();
+      }
+      else {
+        return this.setPage(pageIndex - 1);
+      }
+    }
+    else {
+      return this.rebuild();
+    }
+  }
+
+<<<<<<< HEAD
   build(state) {
     super.build(state);
     this.builderReady.then(() => this.buildPageBar());
+=======
+  setPage(index) {
+    if (index === this.page) {
+      return;
+    }
+    this.page = index;
+    return this.rebuild();
+  }
+
+  getPageConfig(index, components = []) {
+    return {
+      title: `Page ${index}`,
+      label: `Page ${index}`,
+      type: 'panel',
+      key: `page${index}`,
+      components,
+    };
+  }
+
+  pasteComponent(component) {
+    if (component instanceof WizardBuilder) {
+      return;
+    }
+    return super.pasteComponent(component);
+>>>>>>> upstream/master
   }
 }

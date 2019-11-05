@@ -3,38 +3,49 @@ import {
   boolValue,
   getInputMask,
   matchInputMask,
+<<<<<<< HEAD
   getDateSetting
 } from '../utils/utils';
 import moment from 'moment';
+=======
+  getDateSetting,
+  convertFormatToMoment
+} from '../utils/utils';
+import moment from 'moment';
+import {
+  checkInvalidDate,
+  CALENDAR_ERROR_MESSAGES
+} from '../utils/calendarUtils';
+>>>>>>> upstream/master
 
 export default {
   get: _.get,
   each: _.each,
   has: _.has,
-  checkValidator(component, validator, setting, value, data) {
+  checkValidator(component, validator, setting, value, data, index) {
     let result = null;
 
     // Allow each component to override their own validators by implementing the validator.method
     if (validator.method && (typeof component[validator.method] === 'function')) {
-      result = component[validator.method](setting, value, data);
+      result = component[validator.method](setting, value, data, index);
     }
     else {
-      result = validator.check.call(this, component, setting, value, data);
+      result = validator.check.call(this, component, setting, value, data, index);
     }
     if (typeof result === 'string') {
       return result;
     }
     if (!result) {
-      return validator.message.call(this, component, setting);
+      return validator.message.call(this, component, setting, index);
     }
     return '';
   },
-  validate(component, validator, value, data) {
+  validate(component, validator, value, data, index) {
     if (validator.key && _.has(component.component, validator.key)) {
       const setting = this.get(component.component, validator.key);
-      return this.checkValidator(component, validator, setting, value, data);
+      return this.checkValidator(component, validator, setting, value, data, index);
     }
-    return this.checkValidator(component, validator, null, value, data);
+    return this.checkValidator(component, validator, null, value, data, index);
   },
   check(component, data) {
     let result = '';
@@ -44,8 +55,8 @@ export default {
       if (this.validators.hasOwnProperty(name)) {
         const validator = this.validators[name];
         if (component.validateMultiple(value)) {
-          _.each(value, (val) => {
-            result = this.validate(component, validator, val, data);
+          _.each(value, (val, index) => {
+            result = this.validate(component, validator, val, data, index);
             if (result) {
               return false;
             }
@@ -83,6 +94,11 @@ export default {
       check(component, setting, value) {
         if (!boolValue(setting)) {
           return true;
+        }
+        const isCalendar = component.validators.some(validator => validator === 'calendar');
+
+        if (!value && isCalendar && component.widget.enteredDate) {
+          return !this.validators.calendar.check.call(this, component, setting, value);
         }
         return !component.isEmpty(value);
       }
@@ -169,7 +185,11 @@ export default {
         if (!maxWords || (typeof value !== 'string')) {
           return true;
         }
+<<<<<<< HEAD
         return (value.trim().split(/\s+/).length <= maxWords);
+=======
+        return (_.words(value).length <= maxWords);
+>>>>>>> upstream/master
       }
     },
     minWords: {
@@ -177,7 +197,11 @@ export default {
       message(component, setting) {
         return component.t(component.errorMessage('minWords'), {
           field: component.errorLabel,
+<<<<<<< HEAD
           length: (setting + 1),
+=======
+          length: (setting - 1),
+>>>>>>> upstream/master
           data: component.data
         });
       },
@@ -186,7 +210,11 @@ export default {
         if (!minWords || (typeof value !== 'string')) {
           return true;
         }
+<<<<<<< HEAD
         return (value.trim().split(/\s+/).length >= minWords);
+=======
+        return (_.words(value).length >= minWords);
+>>>>>>> upstream/master
       }
     },
     email: {
@@ -333,6 +361,10 @@ export default {
         });
       },
       check(component, setting, value) {
+        if (component.skipMaskValidation) {
+          return true;
+        }
+
         let inputMask;
         if (component.isMultipleMasksField) {
           const maskName = value ? value.maskName : undefined;
@@ -343,7 +375,7 @@ export default {
           value = value ? value.value : value;
         }
         else {
-          inputMask = component._inputMask;
+          inputMask = component.defaultMask;
         }
         if (value && inputMask) {
           return matchInputMask(value, inputMask);
@@ -426,6 +458,54 @@ export default {
 
         return date.isAfter(minDate) || date.isSame(minDate);
       }
+<<<<<<< HEAD
     }
+=======
+    },
+    calendar: {
+      key: 'validate.calendar',
+      messageText: '',
+      message(component) {
+        return component.t(component.errorMessage(this.validators.calendar.messageText), {
+          field: component.errorLabel,
+          maxDate: moment(component.dataValue).format(component.format),
+        });
+      },
+      check(component, setting, value, data, index) {
+        this.validators.calendar.messageText = '';
+        const widget = component.getWidget(index);
+        if (!widget) {
+          return true;
+        }
+        const { settings, enteredDate } = widget;
+        const { minDate, maxDate, format } = settings;
+        const momentFormat = [convertFormatToMoment(format)];
+
+        if (momentFormat[0].match(/M{3,}/g)) {
+          momentFormat.push(momentFormat[0].replace(/M{3,}/g, 'MM'));
+        }
+
+        if (!value && enteredDate) {
+          const { message, result } = checkInvalidDate(enteredDate, momentFormat, minDate, maxDate);
+
+          if (!result) {
+            this.validators.calendar.messageText = message;
+            return result;
+          }
+        }
+
+        if (value && enteredDate) {
+          if (moment(value).format() !== moment(enteredDate, momentFormat, true).format() && enteredDate.match(/_/gi)) {
+            this.validators.calendar.messageText = CALENDAR_ERROR_MESSAGES.INCOMPLETE;
+            return false;
+          }
+          else {
+            widget.enteredDate = '';
+            return true;
+          }
+        }
+      }
+    },
+>>>>>>> upstream/master
   }
 };

@@ -1,7 +1,11 @@
 {
   "type": "File",
   "start": 0,
+<<<<<<< HEAD
   "end": 119,
+=======
+  "end": 129,
+>>>>>>> upstream/master
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +19,11 @@
   "program": {
     "type": "Program",
     "start": 0,
+<<<<<<< HEAD
     "end": 119,
+=======
+    "end": 129,
+>>>>>>> upstream/master
     "loc": {
       "start": {
         "line": 1,
@@ -31,7 +39,11 @@
       {
         "type": "ImportDeclaration",
         "start": 0,
+<<<<<<< HEAD
         "end": 45,
+=======
+        "end": 55,
+>>>>>>> upstream/master
         "loc": {
           "start": {
             "line": 1,
@@ -39,7 +51,11 @@
           },
           "end": {
             "line": 1,
+<<<<<<< HEAD
             "column": 45
+=======
+            "column": 55
+>>>>>>> upstream/master
           }
         },
         "specifiers": [
@@ -79,7 +95,11 @@
         "source": {
           "type": "StringLiteral",
           "start": 25,
+<<<<<<< HEAD
           "end": 44,
+=======
+          "end": 54,
+>>>>>>> upstream/master
           "loc": {
             "start": {
               "line": 1,
@@ -87,6 +107,7 @@
             },
             "end": {
               "line": 1,
+<<<<<<< HEAD
               "column": 44
             }
           },
@@ -95,12 +116,27 @@
             "raw": "'../base/Base.form'"
           },
           "value": "../base/Base.form"
+=======
+              "column": 54
+            }
+          },
+          "extra": {
+            "rawValue": "../textfield/TextField.form",
+            "raw": "'../textfield/TextField.form'"
+          },
+          "value": "../textfield/TextField.form"
+>>>>>>> upstream/master
         }
       },
       {
         "type": "ExportDefaultDeclaration",
+<<<<<<< HEAD
         "start": 46,
         "end": 118,
+=======
+        "start": 56,
+        "end": 128,
+>>>>>>> upstream/master
         "loc": {
           "start": {
             "line": 2,
@@ -113,8 +149,13 @@
         },
         "declaration": {
           "type": "FunctionDeclaration",
+<<<<<<< HEAD
           "start": 61,
           "end": 118,
+=======
+          "start": 71,
+          "end": 128,
+>>>>>>> upstream/master
           "loc": {
             "start": {
               "line": 2,
@@ -132,8 +173,13 @@
           "params": [
             {
               "type": "RestElement",
+<<<<<<< HEAD
               "start": 70,
               "end": 79,
+=======
+              "start": 80,
+              "end": 89,
+>>>>>>> upstream/master
               "loc": {
                 "start": {
                   "line": 2,
@@ -146,8 +192,13 @@
               },
               "argument": {
                 "type": "Identifier",
+<<<<<<< HEAD
                 "start": 73,
                 "end": 79,
+=======
+                "start": 83,
+                "end": 89,
+>>>>>>> upstream/master
                 "loc": {
                   "start": {
                     "line": 2,
@@ -165,8 +216,13 @@
           ],
           "body": {
             "type": "BlockStatement",
+<<<<<<< HEAD
             "start": 81,
             "end": 118,
+=======
+            "start": 91,
+            "end": 128,
+>>>>>>> upstream/master
             "loc": {
               "start": {
                 "line": 2,
@@ -180,8 +236,13 @@
             "body": [
               {
                 "type": "ReturnStatement",
+<<<<<<< HEAD
                 "start": 85,
                 "end": 116,
+=======
+                "start": 95,
+                "end": 126,
+>>>>>>> upstream/master
                 "loc": {
                   "start": {
                     "line": 3,
@@ -194,8 +255,13 @@
                 },
                 "argument": {
                   "type": "CallExpression",
+<<<<<<< HEAD
                   "start": 92,
                   "end": 115,
+=======
+                  "start": 102,
+                  "end": 125,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 3,
@@ -208,8 +274,13 @@
                   },
                   "callee": {
                     "type": "Identifier",
+<<<<<<< HEAD
                     "start": 92,
                     "end": 104,
+=======
+                    "start": 102,
+                    "end": 114,
+>>>>>>> upstream/master
                     "loc": {
                       "start": {
                         "line": 3,
@@ -226,8 +297,13 @@
                   "arguments": [
                     {
                       "type": "SpreadElement",
+<<<<<<< HEAD
                       "start": 105,
                       "end": 114,
+=======
+                      "start": 115,
+                      "end": 124,
+>>>>>>> upstream/master
                       "loc": {
                         "start": {
                           "line": 3,
@@ -240,8 +316,13 @@
                       },
                       "argument": {
                         "type": "Identifier",
+<<<<<<< HEAD
                         "start": 108,
                         "end": 114,
+=======
+                        "start": 118,
+                        "end": 124,
+>>>>>>> upstream/master
                         "loc": {
                           "start": {
                             "line": 3,
@@ -364,9 +445,15 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "value": "../base/Base.form",
       "start": 25,
       "end": 44,
+=======
+      "value": "../textfield/TextField.form",
+      "start": 25,
+      "end": 54,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 1,
@@ -374,7 +461,11 @@
         },
         "end": {
           "line": 1,
+<<<<<<< HEAD
           "column": 44
+=======
+          "column": 54
+>>>>>>> upstream/master
         }
       }
     },
@@ -391,6 +482,7 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 44,
       "end": 45,
       "loc": {
@@ -401,6 +493,18 @@
         "end": {
           "line": 1,
           "column": 45
+=======
+      "start": 54,
+      "end": 55,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 54
+        },
+        "end": {
+          "line": 1,
+          "column": 55
+>>>>>>> upstream/master
         }
       }
     },
@@ -419,8 +523,13 @@
         "updateContext": null
       },
       "value": "export",
+<<<<<<< HEAD
       "start": 46,
       "end": 52,
+=======
+      "start": 56,
+      "end": 62,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 2,
@@ -447,8 +556,13 @@
         "updateContext": null
       },
       "value": "default",
+<<<<<<< HEAD
       "start": 53,
       "end": 60,
+=======
+      "start": 63,
+      "end": 70,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 2,
@@ -474,8 +588,13 @@
         "binop": null
       },
       "value": "function",
+<<<<<<< HEAD
       "start": 61,
       "end": 69,
+=======
+      "start": 71,
+      "end": 79,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 2,
@@ -499,8 +618,13 @@
         "postfix": false,
         "binop": null
       },
+<<<<<<< HEAD
       "start": 69,
       "end": 70,
+=======
+      "start": 79,
+      "end": 80,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 2,
@@ -525,8 +649,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 70,
       "end": 73,
+=======
+      "start": 80,
+      "end": 83,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 2,
@@ -551,8 +680,13 @@
         "binop": null
       },
       "value": "extend",
+<<<<<<< HEAD
       "start": 73,
       "end": 79,
+=======
+      "start": 83,
+      "end": 89,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 2,
@@ -576,8 +710,13 @@
         "postfix": false,
         "binop": null
       },
+<<<<<<< HEAD
       "start": 79,
       "end": 80,
+=======
+      "start": 89,
+      "end": 90,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 2,
@@ -601,8 +740,13 @@
         "postfix": false,
         "binop": null
       },
+<<<<<<< HEAD
       "start": 81,
       "end": 82,
+=======
+      "start": 91,
+      "end": 92,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 2,
@@ -629,8 +773,13 @@
         "updateContext": null
       },
       "value": "return",
+<<<<<<< HEAD
       "start": 85,
       "end": 91,
+=======
+      "start": 95,
+      "end": 101,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 3,
@@ -655,8 +804,13 @@
         "binop": null
       },
       "value": "baseEditForm",
+<<<<<<< HEAD
       "start": 92,
       "end": 104,
+=======
+      "start": 102,
+      "end": 114,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 3,
@@ -680,8 +834,13 @@
         "postfix": false,
         "binop": null
       },
+<<<<<<< HEAD
       "start": 104,
       "end": 105,
+=======
+      "start": 114,
+      "end": 115,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 3,
@@ -706,8 +865,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 105,
       "end": 108,
+=======
+      "start": 115,
+      "end": 118,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 3,
@@ -732,8 +896,13 @@
         "binop": null
       },
       "value": "extend",
+<<<<<<< HEAD
       "start": 108,
       "end": 114,
+=======
+      "start": 118,
+      "end": 124,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 3,
@@ -757,8 +926,13 @@
         "postfix": false,
         "binop": null
       },
+<<<<<<< HEAD
       "start": 114,
       "end": 115,
+=======
+      "start": 124,
+      "end": 125,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 3,
@@ -783,8 +957,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 115,
       "end": 116,
+=======
+      "start": 125,
+      "end": 126,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 3,
@@ -808,8 +987,13 @@
         "postfix": false,
         "binop": null
       },
+<<<<<<< HEAD
       "start": 117,
       "end": 118,
+=======
+      "start": 127,
+      "end": 128,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 4,
@@ -834,8 +1018,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 119,
       "end": 119,
+=======
+      "start": 129,
+      "end": 129,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 5,

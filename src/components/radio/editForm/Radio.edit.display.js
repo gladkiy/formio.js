@@ -1,6 +1,8 @@
-import BuilderUtils from '../../../utils/builder';
-
 export default [
+  {
+    key: 'placeholder',
+    ignore: true
+  },
   {
     type: 'select',
     input: true,
@@ -20,6 +22,7 @@ export default [
     }
   },
   {
+<<<<<<< HEAD
     type: 'datagrid',
     input: true,
     label: 'Values',
@@ -59,6 +62,8 @@ export default [
     ]
   },
   {
+=======
+>>>>>>> upstream/master
     type: 'checkbox',
     input: true,
     key: 'inline',

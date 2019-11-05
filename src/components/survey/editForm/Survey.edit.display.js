@@ -1,5 +1,6 @@
 export default [
   {
+<<<<<<< HEAD
     type: 'datagrid',
     input: true,
     label: 'Questions',
@@ -49,4 +50,9 @@ export default [
       }
     ]
   }
+=======
+    key: 'placeholder',
+    ignore: true
+  },
+>>>>>>> upstream/master
 ];

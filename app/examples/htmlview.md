@@ -4,7 +4,11 @@ layout: vtabs
 section: examples
 weight: 12
 ---
+<<<<<<< HEAD
 Not only can you view a submission as a disabled filled out webform, but you can also provide the **viewAsHtml** option, to view
+=======
+Not only can you view a submission as a disabled filled out webform, but you can also provide the **renderMode** option, to view
+>>>>>>> upstream/master
 the submission as a HTML view.
 
 ```html
@@ -18,7 +22,7 @@ the submission as a HTML view.
 ```js
 Formio.createForm(document.getElementById('formio'), 'https://examples.form.io/wizard/submission/5a542c9e2a40bf0001e0f8a9', {
   readOnly: true,
-  viewAsHtml: true
+  renderMode: 'html'
 });
 ```
 
@@ -28,7 +32,7 @@ Formio.createForm(document.getElementById('formio'), 'https://examples.form.io/w
 <script type="text/javascript">
 Formio.createForm(document.getElementById('formio'), 'https://examples.form.io/wizard/submission/5a542c9e2a40bf0001e0f8a9', {
   readOnly: true,
-  viewAsHtml: true
+  renderMode: 'html'
 });
 </script>
 </div>

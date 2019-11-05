@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import EditFormUtils from '../../base/editForm/utils';
+=======
+import EditFormUtils from '../../_classes/component/editForm/utils';
+>>>>>>> upstream/master
 /* eslint-disable quotes, max-len */
 const title = 'Advanced Next Page';
 const jsonProp = 'nextPage';
@@ -25,7 +29,13 @@ const settingComponent = EditFormUtils.javaScriptValue(
 export default [
   {
     ...settingComponent,
+<<<<<<< HEAD
     customConditional: 'show = instance.root.editForm.display === "wizard"',
+=======
+    customConditional(context) {
+      return context.instance.options.editForm.display === 'wizard';
+    }
+>>>>>>> upstream/master
   }
 ];
 /* eslint-enable quotes, max-len */

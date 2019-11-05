@@ -11,4 +11,11 @@ export default [
     key: 'defaultValue',
     ignore: true,
   },
+<<<<<<< HEAD
+=======
+  {
+    key: 'multiple',
+    ignore: true
+  },
+>>>>>>> upstream/master
 ];

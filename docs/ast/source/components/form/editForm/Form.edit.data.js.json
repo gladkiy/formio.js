@@ -1,7 +1,11 @@
 {
   "type": "File",
   "start": 0,
+<<<<<<< HEAD
   "end": 837,
+=======
+  "end": 849,
+>>>>>>> upstream/master
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +19,11 @@
   "program": {
     "type": "Program",
     "start": 0,
+<<<<<<< HEAD
     "end": 837,
+=======
+    "end": 849,
+>>>>>>> upstream/master
     "loc": {
       "start": {
         "line": 1,
@@ -31,7 +39,11 @@
       {
         "type": "ImportDeclaration",
         "start": 0,
+<<<<<<< HEAD
         "end": 54,
+=======
+        "end": 68,
+>>>>>>> upstream/master
         "loc": {
           "start": {
             "line": 1,
@@ -39,7 +51,11 @@
           },
           "end": {
             "line": 1,
+<<<<<<< HEAD
             "column": 54
+=======
+            "column": 68
+>>>>>>> upstream/master
           }
         },
         "specifiers": [
@@ -79,7 +95,11 @@
         "source": {
           "type": "StringLiteral",
           "start": 26,
+<<<<<<< HEAD
           "end": 53,
+=======
+          "end": 67,
+>>>>>>> upstream/master
           "loc": {
             "start": {
               "line": 1,
@@ -87,6 +107,7 @@
             },
             "end": {
               "line": 1,
+<<<<<<< HEAD
               "column": 53
             }
           },
@@ -95,13 +116,28 @@
             "raw": "'../../base/editForm/utils'"
           },
           "value": "../../base/editForm/utils"
+=======
+              "column": 67
+            }
+          },
+          "extra": {
+            "rawValue": "../../_classes/component/editForm/utils",
+            "raw": "'../../_classes/component/editForm/utils'"
+          },
+          "value": "../../_classes/component/editForm/utils"
+>>>>>>> upstream/master
         },
         "trailingComments": [
           {
             "type": "CommentBlock",
             "value": " eslint-disable max-len ",
+<<<<<<< HEAD
             "start": 55,
             "end": 83,
+=======
+            "start": 69,
+            "end": 97,
+>>>>>>> upstream/master
             "loc": {
               "start": {
                 "line": 2,
@@ -117,8 +153,13 @@
       },
       {
         "type": "ExportDefaultDeclaration",
+<<<<<<< HEAD
         "start": 84,
         "end": 808,
+=======
+        "start": 98,
+        "end": 820,
+>>>>>>> upstream/master
         "loc": {
           "start": {
             "line": 3,
@@ -131,8 +172,13 @@
         },
         "declaration": {
           "type": "ArrayExpression",
+<<<<<<< HEAD
           "start": 99,
           "end": 807,
+=======
+          "start": 113,
+          "end": 819,
+>>>>>>> upstream/master
           "loc": {
             "start": {
               "line": 3,
@@ -146,8 +192,13 @@
           "elements": [
             {
               "type": "CallExpression",
+<<<<<<< HEAD
               "start": 103,
               "end": 402,
+=======
+              "start": 117,
+              "end": 416,
+>>>>>>> upstream/master
               "loc": {
                 "start": {
                   "line": 4,
@@ -160,8 +211,13 @@
               },
               "callee": {
                 "type": "MemberExpression",
+<<<<<<< HEAD
                 "start": 103,
                 "end": 132,
+=======
+                "start": 117,
+                "end": 146,
+>>>>>>> upstream/master
                 "loc": {
                   "start": {
                     "line": 4,
@@ -174,8 +230,13 @@
                 },
                 "object": {
                   "type": "Identifier",
+<<<<<<< HEAD
                   "start": 103,
                   "end": 116,
+=======
+                  "start": 117,
+                  "end": 130,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 4,
@@ -192,8 +253,13 @@
                 },
                 "property": {
                   "type": "Identifier",
+<<<<<<< HEAD
                   "start": 117,
                   "end": 132,
+=======
+                  "start": 131,
+                  "end": 146,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 4,
@@ -213,8 +279,13 @@
               "arguments": [
                 {
                   "type": "StringLiteral",
+<<<<<<< HEAD
                   "start": 133,
                   "end": 155,
+=======
+                  "start": 147,
+                  "end": 169,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 4,
@@ -233,8 +304,13 @@
                 },
                 {
                   "type": "StringLiteral",
+<<<<<<< HEAD
                   "start": 157,
                   "end": 177,
+=======
+                  "start": 171,
+                  "end": 191,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 4,
@@ -253,8 +329,13 @@
                 },
                 {
                   "type": "StringLiteral",
+<<<<<<< HEAD
                   "start": 179,
                   "end": 199,
+=======
+                  "start": 193,
+                  "end": 213,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 4,
@@ -273,8 +354,13 @@
                 },
                 {
                   "type": "NumericLiteral",
+<<<<<<< HEAD
                   "start": 201,
                   "end": 204,
+=======
+                  "start": 215,
+                  "end": 218,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 4,
@@ -293,8 +379,13 @@
                 },
                 {
                   "type": "StringLiteral",
+<<<<<<< HEAD
                   "start": 210,
                   "end": 292,
+=======
+                  "start": 224,
+                  "end": 306,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 5,
@@ -313,8 +404,13 @@
                 },
                 {
                   "type": "StringLiteral",
+<<<<<<< HEAD
                   "start": 298,
                   "end": 398,
+=======
+                  "start": 312,
+                  "end": 412,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 6,
@@ -336,8 +432,13 @@
             },
             {
               "type": "CallExpression",
+<<<<<<< HEAD
               "start": 406,
               "end": 805,
+=======
+              "start": 420,
+              "end": 817,
+>>>>>>> upstream/master
               "loc": {
                 "start": {
                   "line": 8,
@@ -350,8 +451,13 @@
               },
               "callee": {
                 "type": "MemberExpression",
+<<<<<<< HEAD
                 "start": 406,
                 "end": 435,
+=======
+                "start": 420,
+                "end": 449,
+>>>>>>> upstream/master
                 "loc": {
                   "start": {
                     "line": 8,
@@ -364,8 +470,13 @@
                 },
                 "object": {
                   "type": "Identifier",
+<<<<<<< HEAD
                   "start": 406,
                   "end": 419,
+=======
+                  "start": 420,
+                  "end": 433,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 8,
@@ -381,8 +492,13 @@
                 },
                 "property": {
                   "type": "Identifier",
+<<<<<<< HEAD
                   "start": 420,
                   "end": 435,
+=======
+                  "start": 434,
+                  "end": 449,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 8,
@@ -401,8 +517,13 @@
               "arguments": [
                 {
                   "type": "StringLiteral",
+<<<<<<< HEAD
                   "start": 436,
                   "end": 454,
+=======
+                  "start": 450,
+                  "end": 468,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 8,
@@ -421,8 +542,13 @@
                 },
                 {
                   "type": "StringLiteral",
+<<<<<<< HEAD
                   "start": 456,
                   "end": 472,
+=======
+                  "start": 470,
+                  "end": 486,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 8,
@@ -441,8 +567,13 @@
                 },
                 {
                   "type": "StringLiteral",
+<<<<<<< HEAD
                   "start": 474,
                   "end": 490,
+=======
+                  "start": 488,
+                  "end": 504,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 8,
@@ -461,8 +592,13 @@
                 },
                 {
                   "type": "NumericLiteral",
+<<<<<<< HEAD
                   "start": 492,
                   "end": 495,
+=======
+                  "start": 506,
+                  "end": 509,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 8,
@@ -481,8 +617,13 @@
                 },
                 {
                   "type": "StringLiteral",
+<<<<<<< HEAD
                   "start": 501,
                   "end": 571,
+=======
+                  "start": 515,
+                  "end": 585,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 9,
@@ -501,8 +642,13 @@
                 },
                 {
                   "type": "StringLiteral",
+<<<<<<< HEAD
                   "start": 577,
                   "end": 801,
+=======
+                  "start": 591,
+                  "end": 813,
+>>>>>>> upstream/master
                   "loc": {
                     "start": {
                       "line": 10,
@@ -510,6 +656,7 @@
                     },
                     "end": {
                       "line": 10,
+<<<<<<< HEAD
                       "column": 228
                     }
                   },
@@ -518,6 +665,16 @@
                     "raw": "'<p><h4>Example:</h4><pre>{\"sum\": [{\"var\": \"data.a\"}, {\"var\": \"data.b\"}, {\"var\": \"data.c\"}]}</pre><p><a target=\"_blank\" href=\"http://formio.github.io/formio.js/app/examples/calculated.html\">Click here for an example</a></p>'"
                   },
                   "value": "<p><h4>Example:</h4><pre>{\"sum\": [{\"var\": \"data.a\"}, {\"var\": \"data.b\"}, {\"var\": \"data.c\"}]}</pre><p><a target=\"_blank\" href=\"http://formio.github.io/formio.js/app/examples/calculated.html\">Click here for an example</a></p>"
+=======
+                      "column": 226
+                    }
+                  },
+                  "extra": {
+                    "rawValue": "<p><h4>Example:</h4><pre>{\"+\": [{\"var\": \"data.a\"}, {\"var\": \"data.b\"}, {\"var\": \"data.c\"}]}</pre><p><a target=\"_blank\" href=\"http://formio.github.io/formio.js/app/examples/calculated.html\">Click here for an example</a></p>",
+                    "raw": "'<p><h4>Example:</h4><pre>{\"+\": [{\"var\": \"data.a\"}, {\"var\": \"data.b\"}, {\"var\": \"data.c\"}]}</pre><p><a target=\"_blank\" href=\"http://formio.github.io/formio.js/app/examples/calculated.html\">Click here for an example</a></p>'"
+                  },
+                  "value": "<p><h4>Example:</h4><pre>{\"+\": [{\"var\": \"data.a\"}, {\"var\": \"data.b\"}, {\"var\": \"data.c\"}]}</pre><p><a target=\"_blank\" href=\"http://formio.github.io/formio.js/app/examples/calculated.html\">Click here for an example</a></p>"
+>>>>>>> upstream/master
                 }
               ]
             }
@@ -526,8 +683,13 @@
             {
               "type": "CommentBlock",
               "value": " eslint-disable max-len ",
+<<<<<<< HEAD
               "start": 55,
               "end": 83,
+=======
+              "start": 69,
+              "end": 97,
+>>>>>>> upstream/master
               "loc": {
                 "start": {
                   "line": 2,
@@ -544,8 +706,13 @@
             {
               "type": "CommentBlock",
               "value": " eslint-enable max-len ",
+<<<<<<< HEAD
               "start": 809,
               "end": 836,
+=======
+              "start": 821,
+              "end": 848,
+>>>>>>> upstream/master
               "loc": {
                 "start": {
                   "line": 13,
@@ -563,8 +730,13 @@
           {
             "type": "CommentBlock",
             "value": " eslint-disable max-len ",
+<<<<<<< HEAD
             "start": 55,
             "end": 83,
+=======
+            "start": 69,
+            "end": 97,
+>>>>>>> upstream/master
             "loc": {
               "start": {
                 "line": 2,
@@ -581,8 +753,13 @@
           {
             "type": "CommentBlock",
             "value": " eslint-enable max-len ",
+<<<<<<< HEAD
             "start": 809,
             "end": 836,
+=======
+            "start": 821,
+            "end": 848,
+>>>>>>> upstream/master
             "loc": {
               "start": {
                 "line": 13,
@@ -603,8 +780,13 @@
     {
       "type": "CommentBlock",
       "value": " eslint-disable max-len ",
+<<<<<<< HEAD
       "start": 55,
       "end": 83,
+=======
+      "start": 69,
+      "end": 97,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 2,
@@ -619,8 +801,13 @@
     {
       "type": "CommentBlock",
       "value": " eslint-enable max-len ",
+<<<<<<< HEAD
       "start": 809,
       "end": 836,
+=======
+      "start": 821,
+      "end": 848,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 13,
@@ -727,9 +914,15 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "value": "../../base/editForm/utils",
       "start": 26,
       "end": 53,
+=======
+      "value": "../../_classes/component/editForm/utils",
+      "start": 26,
+      "end": 67,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 1,
@@ -737,7 +930,11 @@
         },
         "end": {
           "line": 1,
+<<<<<<< HEAD
           "column": 53
+=======
+          "column": 67
+>>>>>>> upstream/master
         }
       }
     },
@@ -754,6 +951,7 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 53,
       "end": 54,
       "loc": {
@@ -764,14 +962,31 @@
         "end": {
           "line": 1,
           "column": 54
+=======
+      "start": 67,
+      "end": 68,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 67
+        },
+        "end": {
+          "line": 1,
+          "column": 68
+>>>>>>> upstream/master
         }
       }
     },
     {
       "type": "CommentBlock",
       "value": " eslint-disable max-len ",
+<<<<<<< HEAD
       "start": 55,
       "end": 83,
+=======
+      "start": 69,
+      "end": 97,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 2,
@@ -798,8 +1013,13 @@
         "updateContext": null
       },
       "value": "export",
+<<<<<<< HEAD
       "start": 84,
       "end": 90,
+=======
+      "start": 98,
+      "end": 104,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 3,
@@ -826,8 +1046,13 @@
         "updateContext": null
       },
       "value": "default",
+<<<<<<< HEAD
       "start": 91,
       "end": 98,
+=======
+      "start": 105,
+      "end": 112,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 3,
@@ -852,8 +1077,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 99,
       "end": 100,
+=======
+      "start": 113,
+      "end": 114,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 3,
@@ -878,8 +1108,13 @@
         "binop": null
       },
       "value": "EditFormUtils",
+<<<<<<< HEAD
       "start": 103,
       "end": 116,
+=======
+      "start": 117,
+      "end": 130,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 4,
@@ -904,8 +1139,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 116,
       "end": 117,
+=======
+      "start": 130,
+      "end": 131,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 4,
@@ -930,8 +1170,13 @@
         "binop": null
       },
       "value": "javaScriptValue",
+<<<<<<< HEAD
       "start": 117,
       "end": 132,
+=======
+      "start": 131,
+      "end": 146,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 4,
@@ -955,8 +1200,13 @@
         "postfix": false,
         "binop": null
       },
+<<<<<<< HEAD
       "start": 132,
       "end": 133,
+=======
+      "start": 146,
+      "end": 147,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 4,
@@ -982,8 +1232,13 @@
         "updateContext": null
       },
       "value": "Custom Default Value",
+<<<<<<< HEAD
       "start": 133,
       "end": 155,
+=======
+      "start": 147,
+      "end": 169,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 4,
@@ -1008,8 +1263,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 155,
       "end": 156,
+=======
+      "start": 169,
+      "end": 170,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 4,
@@ -1035,8 +1295,13 @@
         "updateContext": null
       },
       "value": "customDefaultValue",
+<<<<<<< HEAD
       "start": 157,
       "end": 177,
+=======
+      "start": 171,
+      "end": 191,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 4,
@@ -1061,8 +1326,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 177,
       "end": 178,
+=======
+      "start": 191,
+      "end": 192,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 4,
@@ -1088,8 +1358,13 @@
         "updateContext": null
       },
       "value": "customDefaultValue",
+<<<<<<< HEAD
       "start": 179,
       "end": 199,
+=======
+      "start": 193,
+      "end": 213,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 4,
@@ -1114,8 +1389,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 199,
       "end": 200,
+=======
+      "start": 213,
+      "end": 214,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 4,
@@ -1141,8 +1421,13 @@
         "updateContext": null
       },
       "value": 120,
+<<<<<<< HEAD
       "start": 201,
       "end": 204,
+=======
+      "start": 215,
+      "end": 218,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 4,
@@ -1167,8 +1452,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 204,
       "end": 205,
+=======
+      "start": 218,
+      "end": 219,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 4,
@@ -1194,8 +1484,13 @@
         "updateContext": null
       },
       "value": "<p><h4>Example:</h4><pre>value = data.firstName + \" \" + data.lastName;</pre></p>",
+<<<<<<< HEAD
       "start": 210,
       "end": 292,
+=======
+      "start": 224,
+      "end": 306,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 5,
@@ -1220,8 +1515,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 292,
       "end": 293,
+=======
+      "start": 306,
+      "end": 307,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 5,
@@ -1247,8 +1547,13 @@
         "updateContext": null
       },
       "value": "<p><h4>Example:</h4><pre>{\"cat\": [{\"var\": \"data.firstName\"}, \" \", {\"var\": \"data.lastName\"}]}</pre>",
+<<<<<<< HEAD
       "start": 298,
       "end": 398,
+=======
+      "start": 312,
+      "end": 412,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 6,
@@ -1272,8 +1577,13 @@
         "postfix": false,
         "binop": null
       },
+<<<<<<< HEAD
       "start": 401,
       "end": 402,
+=======
+      "start": 415,
+      "end": 416,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 7,
@@ -1298,8 +1608,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 402,
       "end": 403,
+=======
+      "start": 416,
+      "end": 417,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 7,
@@ -1324,8 +1639,13 @@
         "binop": null
       },
       "value": "EditFormUtils",
+<<<<<<< HEAD
       "start": 406,
       "end": 419,
+=======
+      "start": 420,
+      "end": 433,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 8,
@@ -1350,8 +1670,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 419,
       "end": 420,
+=======
+      "start": 433,
+      "end": 434,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 8,
@@ -1376,8 +1701,13 @@
         "binop": null
       },
       "value": "javaScriptValue",
+<<<<<<< HEAD
       "start": 420,
       "end": 435,
+=======
+      "start": 434,
+      "end": 449,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 8,
@@ -1401,8 +1731,13 @@
         "postfix": false,
         "binop": null
       },
+<<<<<<< HEAD
       "start": 435,
       "end": 436,
+=======
+      "start": 449,
+      "end": 450,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 8,
@@ -1428,8 +1763,13 @@
         "updateContext": null
       },
       "value": "Calculated Value",
+<<<<<<< HEAD
       "start": 436,
       "end": 454,
+=======
+      "start": 450,
+      "end": 468,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 8,
@@ -1454,8 +1794,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 454,
       "end": 455,
+=======
+      "start": 468,
+      "end": 469,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 8,
@@ -1481,8 +1826,13 @@
         "updateContext": null
       },
       "value": "calculateValue",
+<<<<<<< HEAD
       "start": 456,
       "end": 472,
+=======
+      "start": 470,
+      "end": 486,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 8,
@@ -1507,8 +1857,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 472,
       "end": 473,
+=======
+      "start": 486,
+      "end": 487,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 8,
@@ -1534,8 +1889,13 @@
         "updateContext": null
       },
       "value": "calculateValue",
+<<<<<<< HEAD
       "start": 474,
       "end": 490,
+=======
+      "start": 488,
+      "end": 504,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 8,
@@ -1560,8 +1920,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 490,
       "end": 491,
+=======
+      "start": 504,
+      "end": 505,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 8,
@@ -1587,8 +1952,13 @@
         "updateContext": null
       },
       "value": 130,
+<<<<<<< HEAD
       "start": 492,
       "end": 495,
+=======
+      "start": 506,
+      "end": 509,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 8,
@@ -1613,8 +1983,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 495,
       "end": 496,
+=======
+      "start": 509,
+      "end": 510,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 8,
@@ -1640,8 +2015,13 @@
         "updateContext": null
       },
       "value": "<p><h4>Example:</h4><pre>value = data.a + data.b + data.c;</pre></p>",
+<<<<<<< HEAD
       "start": 501,
       "end": 571,
+=======
+      "start": 515,
+      "end": 585,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 9,
@@ -1666,8 +2046,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 571,
       "end": 572,
+=======
+      "start": 585,
+      "end": 586,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 9,
@@ -1692,9 +2077,15 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "value": "<p><h4>Example:</h4><pre>{\"sum\": [{\"var\": \"data.a\"}, {\"var\": \"data.b\"}, {\"var\": \"data.c\"}]}</pre><p><a target=\"_blank\" href=\"http://formio.github.io/formio.js/app/examples/calculated.html\">Click here for an example</a></p>",
       "start": 577,
       "end": 801,
+=======
+      "value": "<p><h4>Example:</h4><pre>{\"+\": [{\"var\": \"data.a\"}, {\"var\": \"data.b\"}, {\"var\": \"data.c\"}]}</pre><p><a target=\"_blank\" href=\"http://formio.github.io/formio.js/app/examples/calculated.html\">Click here for an example</a></p>",
+      "start": 591,
+      "end": 813,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 10,
@@ -1702,7 +2093,11 @@
         },
         "end": {
           "line": 10,
+<<<<<<< HEAD
           "column": 228
+=======
+          "column": 226
+>>>>>>> upstream/master
         }
       }
     },
@@ -1718,8 +2113,13 @@
         "postfix": false,
         "binop": null
       },
+<<<<<<< HEAD
       "start": 804,
       "end": 805,
+=======
+      "start": 816,
+      "end": 817,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 11,
@@ -1744,8 +2144,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 806,
       "end": 807,
+=======
+      "start": 818,
+      "end": 819,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 12,
@@ -1770,8 +2175,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 807,
       "end": 808,
+=======
+      "start": 819,
+      "end": 820,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 12,
@@ -1786,8 +2196,13 @@
     {
       "type": "CommentBlock",
       "value": " eslint-enable max-len ",
+<<<<<<< HEAD
       "start": 809,
       "end": 836,
+=======
+      "start": 821,
+      "end": 848,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 13,
@@ -1812,8 +2227,13 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 837,
       "end": 837,
+=======
+      "start": 849,
+      "end": 849,
+>>>>>>> upstream/master
       "loc": {
         "start": {
           "line": 14,

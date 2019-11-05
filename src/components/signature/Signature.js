@@ -1,10 +1,10 @@
 import SignaturePad from 'signature_pad/dist/signature_pad.js';
-import BaseComponent from '../base/Base';
+import Input from '../_classes/input/Input';
 import _ from 'lodash';
 
-export default class SignatureComponent extends BaseComponent {
+export default class SignatureComponent extends Input {
   static schema(...extend) {
-    return BaseComponent.schema({
+    return Input.schema({
       type: 'signature',
       label: 'Signature',
       key: 'signature',
@@ -22,15 +22,15 @@ export default class SignatureComponent extends BaseComponent {
     return {
       title: 'Signature',
       group: 'advanced',
-      icon: 'fa fa-pencil',
+      icon: 'pencil',
       weight: 120,
       documentation: 'http://help.form.io/userguide/#signature',
       schema: SignatureComponent.schema()
     };
   }
 
-  constructor(component, options, data) {
-    super(component, options, data);
+  init() {
+    super.init();
     this.currentWidth = 0;
     this.scale = 1;
     if (!this.component.width) {
@@ -49,14 +49,23 @@ export default class SignatureComponent extends BaseComponent {
     return SignatureComponent.schema();
   }
 
-  elementInfo() {
-    const info = super.elementInfo();
+  get inputInfo() {
+    const info = super.inputInfo;
     info.type = 'input';
     info.attr.type = 'hidden';
     return info;
   }
 
+  get className() {
+    return `${super.className} signature-pad`;
+  }
+
+  labelIsHidden() {
+    return true;
+  }
+
   setValue(value, flags) {
+<<<<<<< HEAD
     flags = this.getFlags.apply(this, arguments);
     super.setValue(value, flags);
     if (this.signaturePad) {
@@ -67,57 +76,78 @@ export default class SignatureComponent extends BaseComponent {
       if (!value) {
         this.signaturePad.clear();
       }
+=======
+    flags = flags || {};
+    const changed = super.setValue(value, flags);
+    if (value && this.refs.signatureImage && (!flags.noSign || this.options.readOnly)) {
+      this.refs.signatureImage.setAttribute('src', value);
+      this.showCanvas(false);
+>>>>>>> upstream/master
     }
+    if (this.signaturePad) {
+      if (!value) {
+        this.signaturePad.clear();
+      }
+      else if (changed) {
+        this.triggerChange();
+      }
+    }
+    return changed;
   }
 
   showCanvas(show) {
     if (show) {
-      this.canvas.style.display = 'inherit';
-      this.signatureImage.style.display = 'none';
+      if (this.refs.canvas) {
+        this.refs.canvas.style.display = 'inherit';
+      }
+      if (this.refs.signatureImage) {
+        this.refs.signatureImage.style.display = 'none';
+      }
     }
     else {
-      this.canvas.style.display = 'none';
-      this.signatureImage.style.display = 'inherit';
+      if (this.refs.canvas) {
+        this.refs.canvas.style.display = 'none';
+      }
+      if (this.refs.signatureImage) {
+        this.refs.signatureImage.style.display = 'inherit';
+      }
     }
   }
 
-  set disabled(disabled) {
-    super.disabled = disabled;
-    this.showCanvas(!disabled);
+  onDisabled() {
+    this.showCanvas(!super.disabled);
     if (this.signaturePad) {
-      if (disabled) {
+      if (super.disabled) {
         this.signaturePad.off();
-        this.refresh.classList.add('disabled');
+        if (this.refs.refresh) {
+          this.refs.refresh.classList.add('disabled');
+        }
       }
       else {
         this.signaturePad.on();
-        this.refresh.classList.remove('disabled');
+        if (this.refs.refresh) {
+          this.refs.refresh.classList.remove('disabled');
+        }
       }
-    }
-  }
-
-  destroy() {
-    super.destroy();
-    if (this.signaturePad) {
-      this.signaturePad.off();
     }
   }
 
   checkSize(force, scale) {
-    if (force || (this.padBody.offsetWidth !== this.currentWidth)) {
+    if (force || (this.refs.padBody.offsetWidth !== this.currentWidth)) {
       this.scale = force ? scale : this.scale;
-      this.currentWidth = this.padBody.offsetWidth;
-      this.canvas.width = this.currentWidth * this.scale;
-      this.canvas.height = this.padBody.offsetHeight * this.scale;
-      const ctx = this.canvas.getContext('2d');
+      this.currentWidth = this.refs.padBody.offsetWidth;
+      this.refs.canvas.width = this.currentWidth * this.scale;
+      this.refs.canvas.height = this.refs.padBody.offsetHeight * this.scale;
+      const ctx = this.refs.canvas.getContext('2d');
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale((1 / this.scale), (1 / this.scale));
       ctx.fillStyle = this.signaturePad.backgroundColor;
-      ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      ctx.fillRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
       this.signaturePad.clear();
     }
   }
 
+<<<<<<< HEAD
   /* eslint-disable max-statements */
   build() {
     this.element = this.createElement();
@@ -146,44 +176,52 @@ export default class SignatureComponent extends BaseComponent {
     this.canvas = this.ce('canvas', {
       class: 'signature-pad-canvas',
       height: this.component.height
+=======
+  renderElement(value, index) {
+    return this.renderTemplate('signature', {
+      element: super.renderElement(value, index),
+      required: _.get(this.component, 'validate.required', false),
+>>>>>>> upstream/master
     });
-    this.padBody.appendChild(this.canvas);
+  }
 
-    // Add an asterisk if required.
-    if (_.get(this.component, 'validate.required', false)) {
-      this.padBody.appendChild(this.ce('span', {
-        class: 'form-control-feedback field-required-inline text-danger'
-      }, this.getIcon('asterisk')));
-    }
+  attach(element) {
+    this.loadRefs(element, { canvas: 'single', refresh: 'single', padBody: 'single', signatureImage: 'single' });
+    const superAttach = super.attach(element);
 
-    this.signatureImage = this.ce('img', {
-      style: ('width: 100%;display: none;')
-    });
-    this.padBody.appendChild(this.signatureImage);
-
-    this.element.appendChild(this.padBody);
-
-    // Add the footer.
-    if (this.component.footer) {
-      this.signatureFooter = this.ce('div', {
-        class: 'signature-pad-footer'
-      });
-      this.signatureFooter.appendChild(this.text(this.component.footer));
-      this.createTooltip(this.signatureFooter);
-      this.element.appendChild(this.signatureFooter);
-    }
-
+    this.onDisabled();
     // Create the signature pad.
-    this.signaturePad = new SignaturePad(this.canvas, {
-      minWidth: this.component.minWidth,
-      maxWidth: this.component.maxWidth,
-      penColor: this.component.penColor,
-      backgroundColor: this.component.backgroundColor
-    });
-    this.refresh.addEventListener('click', (event) => {
+    if (this.refs.canvas) {
+      this.signaturePad = new SignaturePad(this.refs.canvas, {
+        minWidth: this.component.minWidth,
+        maxWidth: this.component.maxWidth,
+        penColor: this.component.penColor,
+        backgroundColor: this.component.backgroundColor
+      });
+
+      this.signaturePad.onEnd = () => this.setValue(this.signaturePad.toDataURL(), {
+        noSign: true
+      });
+      this.refs.signatureImage.setAttribute('src', this.signaturePad.toDataURL());
+
+      // Ensure the signature is always the size of its container.
+      if (this.refs.padBody) {
+        this.addEventListener(window, 'resize', _.debounce(() => this.checkSize(), 100));
+        setTimeout(function checkWidth() {
+          if (this.refs.padBody && this.refs.padBody.offsetWidth) {
+            this.checkSize();
+          }
+          else {
+            setTimeout(checkWidth.bind(this), 200);
+          }
+        }.bind(this), 200);
+      }
+    }
+    this.addEventListener(this.refs.refresh, 'click', (event) => {
       event.preventDefault();
       this.showCanvas(true);
       this.signaturePad.clear();
+<<<<<<< HEAD
       this.setValue(null);
     });
     this.signaturePad.onEnd = () => this.setValue(this.signaturePad.toDataURL(), {
@@ -210,21 +248,29 @@ export default class SignatureComponent extends BaseComponent {
 
     this.autofocus();
     this.attachLogic();
+=======
+      this.setValue(this.defaultValue);
+    });
+    this.setValue(this.dataValue);
+    return superAttach;
+>>>>>>> upstream/master
   }
   /* eslint-enable max-statements */
 
-  createViewOnlyLabel(container) {
-    this.labelElement = this.ce('dt');
-    this.labelElement.appendChild(this.text(this.component.footer));
-    this.createTooltip(this.labelElement);
-    container.appendChild(this.labelElement);
+  detach() {
+    if (this.signaturePad) {
+      this.signaturePad.off();
+    }
+    this.signaturePad = null;
+    this.currentWidth = 0;
+    super.detach();
   }
 
-  getView(value) {
+  getValueAsString(value) {
     return value ? 'Yes' : 'No';
   }
 
   focus() {
-    this.padBody.focus();
+    this.refs.padBody.focus();
   }
 }

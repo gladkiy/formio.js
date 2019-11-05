@@ -1,7 +1,13 @@
 /*!
+<<<<<<< HEAD
  * Bootstrap Reboot v4.2.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
+=======
+ * Bootstrap Reboot v4.3.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 The Bootstrap Authors
+ * Copyright 2011-2019 Twitter, Inc.
+>>>>>>> upstream/master
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)
  */
@@ -60,6 +66,10 @@ abbr[data-original-title] {
   text-decoration: underline dotted;
   cursor: help;
   border-bottom: 0;
+<<<<<<< HEAD
+=======
+  -webkit-text-decoration-skip-ink: none;
+>>>>>>> upstream/master
   text-decoration-skip-ink: none;
 }
 
@@ -225,6 +235,13 @@ select {
   text-transform: none;
 }
 
+<<<<<<< HEAD
+=======
+select {
+  word-wrap: normal;
+}
+
+>>>>>>> upstream/master
 button,
 [type="button"],
 [type="reset"],
@@ -232,6 +249,16 @@ button,
   -webkit-appearance: button;
 }
 
+<<<<<<< HEAD
+=======
+button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+  cursor: pointer;
+}
+
+>>>>>>> upstream/master
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,

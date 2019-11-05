@@ -4,7 +4,11 @@ export default [
     input: true,
     weight: 70,
     key: 'delimiter',
+<<<<<<< HEAD
     label: 'Use Delimiter',
+=======
+    label: 'Use Thousands Separator',
+>>>>>>> upstream/master
     tooltip: 'Separate thousands by local delimiter.'
   },
   {

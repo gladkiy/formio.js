@@ -1,5 +1,6 @@
 export default [
   {
+<<<<<<< HEAD
     type: 'textfield',
     input: true,
     key: 'className',
@@ -7,6 +8,42 @@ export default [
     label: 'CSS Class',
     placeholder: 'CSS Class',
     tooltip: 'The CSS class for this HTML element.'
+=======
+    key: 'labelPosition',
+    ignore: true
+  },
+  {
+    key: 'placeholder',
+    ignore: true
+  },
+  {
+    key: 'description',
+    ignore: true
+  },
+  {
+    key: 'tooltip',
+    ignore: true
+  },
+  {
+    key: 'hideLabel',
+    ignore: true
+  },
+  {
+    key: 'autofocus',
+    ignore: true
+  },
+  {
+    key: 'disabled',
+    ignore: true
+  },
+  {
+    key: 'alwaysEnabled',
+    ignore: true
+  },
+  {
+    key: 'tabindex',
+    ignore: true
+>>>>>>> upstream/master
   },
   {
     weight: 700,

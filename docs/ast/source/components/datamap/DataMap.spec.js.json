@@ -1,37 +1,65 @@
 {
   "type": "File",
   "start": 0,
+<<<<<<< HEAD
   "end": 594,
+=======
+  "end": 598,
+>>>>>>> upstream/master
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
+<<<<<<< HEAD
       "line": 23,
+=======
+      "line": 20,
+>>>>>>> upstream/master
       "column": 0
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
+<<<<<<< HEAD
     "end": 594,
+=======
+    "end": 598,
+>>>>>>> upstream/master
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
+<<<<<<< HEAD
         "line": 23,
+=======
+        "line": 20,
+>>>>>>> upstream/master
         "column": 0
       }
     },
     "sourceType": "module",
+<<<<<<< HEAD
     "body": [
       {
         "type": "ImportDeclaration",
         "start": 0,
         "end": 44,
+=======
+    "body": [],
+    "directives": [],
+    "leadingComments": null,
+    "innerComments": [
+      {
+        "type": "CommentLine",
+        "value": " import Harness from '../../../test/harness';",
+        "start": 0,
+        "end": 47,
+>>>>>>> upstream/master
         "loc": {
           "start": {
             "line": 1,
@@ -39,6 +67,7 @@
           },
           "end": {
             "line": 1,
+<<<<<<< HEAD
             "column": 44
           }
         },
@@ -1512,10 +1541,321 @@
         "end": {
           "line": 1,
           "column": 19
+=======
+            "column": 47
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": " import DataMapComponent from './DataMap';",
+        "start": 48,
+        "end": 92,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 44
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": " import { comp1 } from './fixtures';",
+        "start": 93,
+        "end": 131,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 0
+          },
+          "end": {
+            "line": 3,
+            "column": 38
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "",
+        "start": 132,
+        "end": 134,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 0
+          },
+          "end": {
+            "line": 4,
+            "column": 2
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": " describe('DataMap Component', () => {",
+        "start": 135,
+        "end": 175,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 0
+          },
+          "end": {
+            "line": 5,
+            "column": 40
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "   it('Should build a data map component', () => {",
+        "start": 176,
+        "end": 228,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 0
+          },
+          "end": {
+            "line": 6,
+            "column": 52
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     return Harness.testCreate(DataMapComponent, comp1);",
+        "start": 229,
+        "end": 287,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 58
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "   });",
+        "start": 288,
+        "end": 296,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 0
+          },
+          "end": {
+            "line": 8,
+            "column": 8
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "",
+        "start": 297,
+        "end": 299,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 0
+          },
+          "end": {
+            "line": 9,
+            "column": 2
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "   it('Should get and set values within the datamap.', () => {",
+        "start": 300,
+        "end": 364,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 0
+          },
+          "end": {
+            "line": 10,
+            "column": 64
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     return Harness.testCreate(DataMapComponent, comp1).then((component) => {",
+        "start": 365,
+        "end": 444,
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 0
+          },
+          "end": {
+            "line": 11,
+            "column": 79
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "       Harness.testSetGet(component, {",
+        "start": 445,
+        "end": 485,
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 0
+          },
+          "end": {
+            "line": 12,
+            "column": 40
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "         one: 'One',",
+        "start": 486,
+        "end": 508,
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 0
+          },
+          "end": {
+            "line": 13,
+            "column": 22
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "         two: 'Two',",
+        "start": 509,
+        "end": 531,
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 0
+          },
+          "end": {
+            "line": 14,
+            "column": 22
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "         three: 'Three'",
+        "start": 532,
+        "end": 557,
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 0
+          },
+          "end": {
+            "line": 15,
+            "column": 25
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "       });",
+        "start": 558,
+        "end": 570,
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 0
+          },
+          "end": {
+            "line": 16,
+            "column": 12
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     });",
+        "start": 571,
+        "end": 581,
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 0
+          },
+          "end": {
+            "line": 17,
+            "column": 10
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "   });",
+        "start": 582,
+        "end": 590,
+        "loc": {
+          "start": {
+            "line": 18,
+            "column": 0
+          },
+          "end": {
+            "line": 18,
+            "column": 8
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": " });",
+        "start": 591,
+        "end": 597,
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 0
+          },
+          "end": {
+            "line": 19,
+            "column": 6
+          }
+        }
+      }
+    ]
+  },
+  "comments": [
+    {
+      "type": "CommentLine",
+      "value": " import Harness from '../../../test/harness';",
+      "start": 0,
+      "end": 47,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 47
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "string",
         "beforeExpr": false,
@@ -1539,10 +1879,25 @@
         "end": {
           "line": 1,
           "column": 43
+=======
+      "type": "CommentLine",
+      "value": " import DataMapComponent from './DataMap';",
+      "start": 48,
+      "end": 92,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 44
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ";",
         "beforeExpr": true,
@@ -1565,10 +1920,25 @@
         "end": {
           "line": 1,
           "column": 44
+=======
+      "type": "CommentLine",
+      "value": " import { comp1 } from './fixtures';",
+      "start": 93,
+      "end": 131,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 38
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "import",
         "keyword": "import",
@@ -1593,10 +1963,25 @@
         "end": {
           "line": 2,
           "column": 6
+=======
+      "type": "CommentLine",
+      "value": "",
+      "start": 132,
+      "end": 134,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 2
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "name",
         "beforeExpr": false,
@@ -1619,10 +2004,25 @@
         "end": {
           "line": 2,
           "column": 23
+=======
+      "type": "CommentLine",
+      "value": " describe('DataMap Component', () => {",
+      "start": 135,
+      "end": 175,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 40
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "name",
         "beforeExpr": false,
@@ -3674,10 +4074,25 @@
         "end": {
           "line": 14,
           "column": 14
+=======
+      "type": "CommentLine",
+      "value": "   it('Should build a data map component', () => {",
+      "start": 176,
+      "end": 228,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 52
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "name",
         "beforeExpr": false,
@@ -3700,10 +4115,25 @@
         "end": {
           "line": 14,
           "column": 24
+=======
+      "type": "CommentLine",
+      "value": "     return Harness.testCreate(DataMapComponent, comp1);",
+      "start": 229,
+      "end": 287,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 58
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "(",
         "beforeExpr": true,
@@ -3725,10 +4155,25 @@
         "end": {
           "line": 14,
           "column": 25
+=======
+      "type": "CommentLine",
+      "value": "   });",
+      "start": 288,
+      "end": 296,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 8
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "name",
         "beforeExpr": false,
@@ -3751,10 +4196,25 @@
         "end": {
           "line": 14,
           "column": 34
+=======
+      "type": "CommentLine",
+      "value": "",
+      "start": 297,
+      "end": 299,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 2
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ",",
         "beforeExpr": true,
@@ -3777,10 +4237,25 @@
         "end": {
           "line": 14,
           "column": 35
+=======
+      "type": "CommentLine",
+      "value": "   it('Should get and set values within the datamap.', () => {",
+      "start": 300,
+      "end": 364,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 64
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "{",
         "beforeExpr": true,
@@ -3802,10 +4277,25 @@
         "end": {
           "line": 14,
           "column": 37
+=======
+      "type": "CommentLine",
+      "value": "     return Harness.testCreate(DataMapComponent, comp1).then((component) => {",
+      "start": 365,
+      "end": 444,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 79
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "name",
         "beforeExpr": false,
@@ -3828,10 +4318,25 @@
         "end": {
           "line": 15,
           "column": 11
+=======
+      "type": "CommentLine",
+      "value": "       Harness.testSetGet(component, {",
+      "start": 445,
+      "end": 485,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 40
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ":",
         "beforeExpr": true,
@@ -3854,10 +4359,25 @@
         "end": {
           "line": 15,
           "column": 12
+=======
+      "type": "CommentLine",
+      "value": "         one: 'One',",
+      "start": 486,
+      "end": 508,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 22
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "string",
         "beforeExpr": false,
@@ -3881,10 +4401,25 @@
         "end": {
           "line": 15,
           "column": 18
+=======
+      "type": "CommentLine",
+      "value": "         two: 'Two',",
+      "start": 509,
+      "end": 531,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 22
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ",",
         "beforeExpr": true,
@@ -3907,10 +4442,25 @@
         "end": {
           "line": 15,
           "column": 19
+=======
+      "type": "CommentLine",
+      "value": "         three: 'Three'",
+      "start": 532,
+      "end": 557,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 25
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "name",
         "beforeExpr": false,
@@ -3933,10 +4483,25 @@
         "end": {
           "line": 16,
           "column": 11
+=======
+      "type": "CommentLine",
+      "value": "       });",
+      "start": 558,
+      "end": 570,
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 0
+        },
+        "end": {
+          "line": 16,
+          "column": 12
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ":",
         "beforeExpr": true,
@@ -3959,10 +4524,25 @@
         "end": {
           "line": 16,
           "column": 12
+=======
+      "type": "CommentLine",
+      "value": "     });",
+      "start": 571,
+      "end": 581,
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 17,
+          "column": 10
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "string",
         "beforeExpr": false,
@@ -3986,10 +4566,25 @@
         "end": {
           "line": 16,
           "column": 18
+=======
+      "type": "CommentLine",
+      "value": "   });",
+      "start": 582,
+      "end": 590,
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 0
+        },
+        "end": {
+          "line": 18,
+          "column": 8
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ",",
         "beforeExpr": true,
@@ -4038,10 +4633,43 @@
         "end": {
           "line": 17,
           "column": 13
+=======
+      "type": "CommentLine",
+      "value": " });",
+      "start": 591,
+      "end": 597,
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 6
+        }
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "type": "CommentLine",
+      "value": " import Harness from '../../../test/harness';",
+      "start": 0,
+      "end": 47,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 47
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ":",
         "beforeExpr": true,
@@ -4064,10 +4692,25 @@
         "end": {
           "line": 17,
           "column": 14
+=======
+      "type": "CommentLine",
+      "value": " import DataMapComponent from './DataMap';",
+      "start": 48,
+      "end": 92,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 44
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "string",
         "beforeExpr": false,
@@ -4091,10 +4734,25 @@
         "end": {
           "line": 17,
           "column": 22
+=======
+      "type": "CommentLine",
+      "value": " import { comp1 } from './fixtures';",
+      "start": 93,
+      "end": 131,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 38
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "}",
         "beforeExpr": false,
@@ -4116,10 +4774,25 @@
         "end": {
           "line": 18,
           "column": 7
+=======
+      "type": "CommentLine",
+      "value": "",
+      "start": 132,
+      "end": 134,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 2
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ")",
         "beforeExpr": false,
@@ -4141,10 +4814,25 @@
         "end": {
           "line": 18,
           "column": 8
+=======
+      "type": "CommentLine",
+      "value": " describe('DataMap Component', () => {",
+      "start": 135,
+      "end": 175,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 40
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ";",
         "beforeExpr": true,
@@ -4167,10 +4855,25 @@
         "end": {
           "line": 18,
           "column": 9
+=======
+      "type": "CommentLine",
+      "value": "   it('Should build a data map component', () => {",
+      "start": 176,
+      "end": 228,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 52
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "name",
         "beforeExpr": false,
@@ -4193,10 +4896,25 @@
         "end": {
           "line": 19,
           "column": 10
+=======
+      "type": "CommentLine",
+      "value": "     return Harness.testCreate(DataMapComponent, comp1);",
+      "start": 229,
+      "end": 287,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 58
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "(",
         "beforeExpr": true,
@@ -4218,10 +4936,25 @@
         "end": {
           "line": 19,
           "column": 11
+=======
+      "type": "CommentLine",
+      "value": "   });",
+      "start": 288,
+      "end": 296,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 8
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ")",
         "beforeExpr": false,
@@ -4243,10 +4976,25 @@
         "end": {
           "line": 19,
           "column": 12
+=======
+      "type": "CommentLine",
+      "value": "",
+      "start": 297,
+      "end": 299,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 2
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ";",
         "beforeExpr": true,
@@ -4269,10 +5017,25 @@
         "end": {
           "line": 19,
           "column": 13
+=======
+      "type": "CommentLine",
+      "value": "   it('Should get and set values within the datamap.', () => {",
+      "start": 300,
+      "end": 364,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 64
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "}",
         "beforeExpr": false,
@@ -4294,10 +5057,25 @@
         "end": {
           "line": 20,
           "column": 5
+=======
+      "type": "CommentLine",
+      "value": "     return Harness.testCreate(DataMapComponent, comp1).then((component) => {",
+      "start": 365,
+      "end": 444,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 79
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ")",
         "beforeExpr": false,
@@ -4319,10 +5097,25 @@
         "end": {
           "line": 20,
           "column": 6
+=======
+      "type": "CommentLine",
+      "value": "       Harness.testSetGet(component, {",
+      "start": 445,
+      "end": 485,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 40
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ";",
         "beforeExpr": true,
@@ -4345,10 +5138,25 @@
         "end": {
           "line": 20,
           "column": 7
+=======
+      "type": "CommentLine",
+      "value": "         one: 'One',",
+      "start": 486,
+      "end": 508,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 22
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "}",
         "beforeExpr": false,
@@ -4370,10 +5178,25 @@
         "end": {
           "line": 21,
           "column": 3
+=======
+      "type": "CommentLine",
+      "value": "         two: 'Two',",
+      "start": 509,
+      "end": 531,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 22
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ")",
         "beforeExpr": false,
@@ -4395,10 +5218,25 @@
         "end": {
           "line": 21,
           "column": 4
+=======
+      "type": "CommentLine",
+      "value": "         three: 'Three'",
+      "start": 532,
+      "end": 557,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 25
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ";",
         "beforeExpr": true,
@@ -4421,10 +5259,25 @@
         "end": {
           "line": 21,
           "column": 5
+=======
+      "type": "CommentLine",
+      "value": "       });",
+      "start": 558,
+      "end": 570,
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 0
+        },
+        "end": {
+          "line": 16,
+          "column": 12
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": "}",
         "beforeExpr": false,
@@ -4446,10 +5299,25 @@
         "end": {
           "line": 22,
           "column": 1
+=======
+      "type": "CommentLine",
+      "value": "     });",
+      "start": 571,
+      "end": 581,
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 17,
+          "column": 10
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ")",
         "beforeExpr": false,
@@ -4471,10 +5339,25 @@
         "end": {
           "line": 22,
           "column": 2
+=======
+      "type": "CommentLine",
+      "value": "   });",
+      "start": 582,
+      "end": 590,
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 0
+        },
+        "end": {
+          "line": 18,
+          "column": 8
+>>>>>>> upstream/master
         }
       }
     },
     {
+<<<<<<< HEAD
       "type": {
         "label": ";",
         "beforeExpr": true,
@@ -4497,6 +5380,20 @@
         "end": {
           "line": 22,
           "column": 3
+=======
+      "type": "CommentLine",
+      "value": " });",
+      "start": 591,
+      "end": 597,
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 6
+>>>>>>> upstream/master
         }
       }
     },
@@ -4513,6 +5410,7 @@
         "binop": null,
         "updateContext": null
       },
+<<<<<<< HEAD
       "start": 594,
       "end": 594,
       "loc": {
@@ -4522,6 +5420,17 @@
         },
         "end": {
           "line": 23,
+=======
+      "start": 598,
+      "end": 598,
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 0
+        },
+        "end": {
+          "line": 20,
+>>>>>>> upstream/master
           "column": 0
         }
       }

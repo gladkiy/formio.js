@@ -1,6 +1,19 @@
 import BuilderUtils from '../../../utils/builder';
+import _ from 'lodash';
 
 export default [
+  {
+    key: 'labelPosition',
+    ignore: true,
+  },
+  {
+    key: 'placeholder',
+    ignore: true,
+  },
+  {
+    key: 'hideLabel',
+    ignore: true,
+  },
   {
     type: 'select',
     key: 'action',
@@ -12,14 +25,42 @@ export default [
     data: {
       values: [
         { label: 'Submit', value: 'submit' },
+<<<<<<< HEAD
         { label: 'Save State', value: 'saveState' },
+=======
+        { label: 'Save in state', value: 'saveState' },
+>>>>>>> upstream/master
         { label: 'Event', value: 'event' },
         { label: 'Custom', value: 'custom' },
         { label: 'Reset', value: 'reset' },
         { label: 'OAuth', value: 'oauth' },
-        { label: 'POST to URL', value: 'url' }
-      ]
-    }
+        { label: 'POST to URL', value: 'url' },
+      ],
+    },
+  },
+  {
+    type: 'textfield',
+    label: 'Save in state',
+    key: 'state',
+    weight: 112,
+    tooltip: 'The state you wish to save the submission under when this button is pressed. Example "draft" would save the submission in Draft Mode.',
+    placeholder: 'submitted',
+    input: true,
+    conditional: {
+      json: { '===': [{ var: 'data.action' }, 'saveState'] },
+    },
+  },
+  {
+    type: 'checkbox',
+    input: true,
+    inputType: 'checkbox',
+    key: 'showValidations',
+    label: 'Show Validations',
+    weight: 115,
+    tooltip: 'When the button is pressed, show any validation errors on the form.',
+    conditional: {
+      json: { '!==': [{ var: 'data.action' }, 'submit'] },
+    },
   },
   {
     type: 'textfield',
@@ -52,8 +93,8 @@ export default [
     weight: 120,
     tooltip: 'The event to fire when the button is clicked.',
     conditional: {
-      json: { '===': [{ var: 'data.action' }, 'event'] }
-    }
+      json: { '===': [{ var: 'data.action' }, 'event'] },
+    },
   },
   {
     type: 'textfield',
@@ -65,8 +106,8 @@ export default [
     tooltip: 'The URL where the submission will be sent.',
     placeholder: 'https://example.form.io',
     conditional: {
-      json: { '===': [{ var: 'data.action' }, 'url'] }
-    }
+      json: { '===': [{ var: 'data.action' }, 'url'] },
+    },
   },
   {
     type: 'datagrid',
@@ -81,18 +122,18 @@ export default [
         key: 'header',
         label: 'Header',
         input: true,
-        type: 'textfield'
+        type: 'textfield',
       },
       {
         key: 'value',
         label: 'Value',
         input: true,
-        type: 'textfield'
+        type: 'textfield',
       }
     ],
     conditional: {
-      json: { '===': [{ var: 'data.action' }, 'url'] }
-    }
+      json: { '===': [{ var: 'data.action' }, 'url'] },
+    },
   },
   {
     type: 'textarea',
@@ -105,8 +146,8 @@ export default [
     weight: 120,
     placeholder: "data['mykey'] = data['anotherKey'];",
     conditional: {
-      json: { '===': [{ var: 'data.action' }, 'custom'] }
-    }
+      json: { '===': [{ var: 'data.action' }, 'custom'] },
+    },
   },
   {
     type: 'select',
@@ -118,14 +159,14 @@ export default [
     weight: 140,
     data: {
       values: [
-        { label: 'Default', value: 'default' },
         { label: 'Primary', value: 'primary' },
+        { label: 'Secondary', value: 'secondary' },
         { label: 'Info', value: 'info' },
         { label: 'Success', value: 'success' },
         { label: 'Danger', value: 'danger' },
-        { label: 'Warning', value: 'warning' }
-      ]
-    }
+        { label: 'Warning', value: 'warning' },
+      ],
+    },
   },
   {
     type: 'select',
@@ -140,9 +181,9 @@ export default [
         { label: 'Extra Small', value: 'xs' },
         { label: 'Small', value: 'sm' },
         { label: 'Medium', value: 'md' },
-        { label: 'Large', value: 'lg' }
-      ]
-    }
+        { label: 'Large', value: 'lg' },
+      ],
+    },
   },
   {
     type: 'textfield',
@@ -151,7 +192,7 @@ export default [
     input: true,
     placeholder: 'Enter icon classes',
     tooltip: "This is the full icon class string to show the icon. Example: 'fa fa-plus'",
-    weight: 160
+    weight: 160,
   },
   {
     type: 'textfield',
@@ -160,7 +201,7 @@ export default [
     input: true,
     placeholder: 'Enter icon classes',
     tooltip: "This is the full icon class string to show the icon. Example: 'fa fa-plus'",
-    weight: 170
+    weight: 170,
   },
   {
     type: 'select',
@@ -170,19 +211,25 @@ export default [
     key: 'shortcut',
     tooltip: 'Shortcut for this component.',
     dataSrc: 'custom',
+    valueProperty: 'value',
+    customDefaultValue: () => '',
+    template: '{{ item.label }}',
     data: {
-      custom(values, component, data, row, utils, instance, form) {
-        return BuilderUtils.getAvailableShortcuts(form, component);
-      }
-    }
+      custom(context) {
+        return BuilderUtils.getAvailableShortcuts(
+          _.get(context, 'instance.options.editForm', {}),
+          _.get(context, 'instance.options.editComponent', {})
+        );
+      },
+    },
   },
   {
     type: 'checkbox',
     key: 'block',
-    label: 'Block',
+    label: 'Block Button',
     input: true,
-    weight: 610,
-    tooltip: 'This control should span the full width of the bounding container.'
+    weight: 155,
+    tooltip: 'This control should span the full width of the bounding container.',
   },
   {
     type: 'checkbox',
@@ -190,6 +237,6 @@ export default [
     label: 'Disable on Form Invalid',
     tooltip: 'This will disable this field if the form is invalid.',
     input: true,
-    weight: 620
-  }
+    weight: 620,
+  },
 ];

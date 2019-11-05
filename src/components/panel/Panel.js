@@ -1,4 +1,4 @@
-import NestedComponent from '../nested/NestedComponent';
+import NestedComponent from '../_classes/nested/NestedComponent';
 
 export default class PanelComponent extends NestedComponent {
   static schema(...extend) {
@@ -6,7 +6,7 @@ export default class PanelComponent extends NestedComponent {
       label: 'Panel',
       type: 'panel',
       key: 'panel',
-      title: '',
+      title: 'Panel',
       theme: 'default',
       breadcrumb: 'default',
       components: [],
@@ -21,7 +21,7 @@ export default class PanelComponent extends NestedComponent {
   static get builderInfo() {
     return {
       title: 'Panel',
-      icon: 'fa fa-list-alt',
+      icon: 'list-alt',
       group: 'layout',
       documentation: 'http://help.form.io/userguide/#panels',
       weight: 30,
@@ -29,18 +29,15 @@ export default class PanelComponent extends NestedComponent {
     };
   }
 
-  constructor(component, options, data) {
-    super(component, options, data);
-  }
-
   get defaultSchema() {
     return PanelComponent.schema();
   }
 
-  getContainer() {
-    return this.panelBody;
+  get templateName() {
+    return 'panel';
   }
 
+<<<<<<< HEAD
   get className() {
     return `panel panel-${this.component.theme} ${super.className}`;
   }
@@ -100,5 +97,10 @@ export default class PanelComponent extends NestedComponent {
     this.element.appendChild(this.panelBody);
     this.setCollapsed();
     this.attachLogic();
+=======
+  constructor(...args) {
+    super(...args);
+    this.noField = true;
+>>>>>>> upstream/master
   }
 }

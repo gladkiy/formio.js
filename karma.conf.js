@@ -13,11 +13,32 @@ module.exports = function(config) {
             exclude: /node_modules/,
             use: {
               loader: 'babel-loader',
+<<<<<<< HEAD
               options: {
                 presets: ['@babel/env'],
                 plugins: ['@babel/plugin-proposal-export-default-from']
               }
+=======
+              options: require('./babel.config.js')
+>>>>>>> upstream/master
             }
+          },
+          {
+            test: /\.html$/,
+            use: {
+              loader: 'raw-loader'
+            }
+          },
+          {
+            test: /\.ejs$/,
+            use: [{
+              loader: 'ejs-loader',
+              options: {
+                evaluate: /\{%([\s\S]+?)%\}/g,
+                interpolate: /\{\{([\s\S]+?)\}\}/g,
+                escape: /\{\{\{([\s\S]+?)\}\}\}/g
+              }
+            }]
           }
         ]
       }

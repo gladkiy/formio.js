@@ -1,8 +1,40 @@
 export default [
   {
+<<<<<<< HEAD
     key: 'label',
     hidden: true,
     calculateValue: 'value = data.title'
+=======
+    key: 'labelPosition',
+    ignore: true
+  },
+  {
+    key: 'placeholder',
+    ignore: true
+  },
+  {
+    key: 'description',
+    ignore: true
+  },
+  {
+    key: 'hideLabel',
+    ignore: true
+  },
+  {
+    key: 'autofocus',
+    ignore: true
+  },
+  {
+    key: 'label',
+    hidden: true,
+    calculateValue(context) {
+      return context.data.title;
+    }
+  },
+  {
+    key: 'tabindex',
+    hidden: true,
+>>>>>>> upstream/master
   },
   {
     weight: 1,
@@ -99,7 +131,13 @@ export default [
         },
       }
     ],
+<<<<<<< HEAD
     customConditional: 'show = instance.root.editForm.display === "wizard"',
+=======
+    customConditional(context) {
+      return context.instance.options.editForm.display === 'wizard';
+    }
+>>>>>>> upstream/master
   },
   {
     weight: 650,

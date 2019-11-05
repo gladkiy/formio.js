@@ -17,7 +17,11 @@ describe('Wizard Component', () => {
   });
 });
 
+<<<<<<< HEAD
 describe('Form Wizard Renderer tests', () => {
+=======
+describe('WizardRenderer tests', () => {
+>>>>>>> upstream/master
   each(WizardTests, (wizardTest) => {
     each(wizardTest.tests, (wizardTestTest, title) => {
       it(title, (done) => {

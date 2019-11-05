@@ -56,7 +56,11 @@ lib: builder
       </div>
     </div>
     <div class="row">
+<<<<<<< HEAD
       <div class="col-md-4"><a href="https://github.com/formio/formio" target="_blank"><img class="img-responsive" src="{{ site.baseUrl }}/app/github-logo.png"></a></div>
+=======
+      <div class="col-md-4"><a href="https://github.com/formio/formio" target="_blank"><img style="width: 100%" class="img-responsive" src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"></a></div>
+>>>>>>> upstream/master
       <div class="col-md-8">
         <p>Getting started is as easy as...</p>
         <pre style="background-color: white;">git clone https://github.com/formio/formio.git
@@ -91,7 +95,22 @@ var onForm = function(form) {
   });
 };
 
+var onBuild = function(build) {
+  jsonElement.innerHTML = '';
+  formElement.innerHTML = '';
+  jsonElement.appendChild(document.createTextNode(JSON.stringify(builder.instance.schema, null, 4)));
+  Formio.createForm(formElement, builder.instance.form).then(onForm);
+};
+
+var onReady = function() {
+  var jsonElement = document.getElementById('json');
+  var formElement = document.getElementById('formio');
+  builder.instance.on('saveComponent', onBuild);
+  builder.instance.on('editComponent', onBuild);
+};
+
 var setDisplay = function(display) {
+<<<<<<< HEAD
   builder.setDisplay(display).then(function(instance) {     
      instance.on('change', function(form) {
        if (form.components) {
@@ -102,6 +121,9 @@ var setDisplay = function(display) {
        }
      });
    });
+=======
+  builder.setDisplay(display).then(onReady);
+>>>>>>> upstream/master
 };
 
 // Handle the form selection.
@@ -110,5 +132,5 @@ formSelect.addEventListener("change", function() {
   setDisplay(this.value);
 });
 
-setDisplay('form');
+builder.instance.ready.then(onReady);
 </script>

@@ -1,8 +1,4 @@
-import _ from 'lodash';
-
 import SelectComponent from '../select/Select';
-import Webform from '../../Webform';
-import Formio from '../../Formio';
 
 export default class ResourceComponent extends SelectComponent {
   static schema(...extend) {
@@ -13,32 +9,33 @@ export default class ResourceComponent extends SelectComponent {
       dataSrc: 'resource',
       resource: '',
       project: '',
-      template: '<span>{{ item.data }}</span>'
+      template: '<span>{{ item.data }}</span>',
     }, ...extend);
   }
 
   static get builderInfo() {
     return {
       title: 'Resource',
-      group: 'advanced',
-      icon: 'fa fa-files-o',
+      group: 'premium',
+      icon: 'files-o',
       weight: 90,
       documentation: 'http://help.form.io/userguide/#resource',
-      schema: ResourceComponent.schema()
+      schema: ResourceComponent.schema(),
     };
   }
 
-  constructor(component, options, data) {
-    super(component, options, data);
+  init() {
+    super.init();
     this.component.dataSrc = 'resource';
     this.component.data = {
-      resource: this.component.resource
+      resource: this.component.resource,
     };
   }
 
   get defaultSchema() {
     return ResourceComponent.schema();
   }
+<<<<<<< HEAD
 
   /**
    * Creates a new button to add a resource instance
@@ -97,4 +94,6 @@ export default class ResourceComponent extends SelectComponent {
       super.addInput(input, container);
     }
   }
+=======
+>>>>>>> upstream/master
 }

@@ -1,5 +1,24 @@
 export default [
   {
+<<<<<<< HEAD
+=======
+    key: 'placeholder',
+    ignore: true
+  },
+  {
+    key: 'tabindex',
+    ignore: true
+  },
+  {
+    type: 'textfield',
+    label: 'Label for Key column',
+    key: 'keyLabel',
+    tooltip: 'Provide a label text for Key column (otherwise \'Key\' will be used)',
+    weight: 404,
+    input: true
+  },
+  {
+>>>>>>> upstream/master
     type: 'checkbox',
     label: 'Disable Adding / Removing Rows',
     key: 'disableAddingRemovingRows',
@@ -23,6 +42,12 @@ export default [
     placeholder: 'Add Another',
     weight: 410,
     input: true,
+<<<<<<< HEAD
     customConditional: 'show = !data.disableAddingRemovingRows'
+=======
+    customConditional(context) {
+      return !context.data.disableAddingRemovingRows;
+    }
+>>>>>>> upstream/master
   }
 ];

@@ -1,4 +1,4 @@
-import NestedComponent from '../nested/NestedComponent';
+import NestedComponent from '../_classes/nested/NestedComponent';
 
 export default class FieldsetComponent extends NestedComponent {
   static schema(...extend) {
@@ -16,7 +16,7 @@ export default class FieldsetComponent extends NestedComponent {
   static get builderInfo() {
     return {
       title: 'Field Set',
-      icon: 'fa fa-th-large',
+      icon: 'th-large',
       group: 'layout',
       documentation: 'http://help.form.io/userguide/#fieldset',
       weight: 20,
@@ -28,14 +28,11 @@ export default class FieldsetComponent extends NestedComponent {
     return FieldsetComponent.schema();
   }
 
-  getContainer() {
-    return this.body;
-  }
-
   get className() {
     return `form-group ${super.className}`;
   }
 
+<<<<<<< HEAD
   build(state) {
     this.element = this.ce('fieldset', {
       id: this.id,
@@ -55,5 +52,14 @@ export default class FieldsetComponent extends NestedComponent {
     this.element.appendChild(this.body);
     this.setCollapsed();
     this.attachLogic();
+=======
+  get templateName() {
+    return 'fieldset';
+  }
+
+  constructor(...args) {
+    super(...args);
+    this.noField = true;
+>>>>>>> upstream/master
   }
 }

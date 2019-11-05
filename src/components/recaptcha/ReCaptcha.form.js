@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import baseEditForm from '../base/Base.form';
+=======
+import baseEditForm from '../_classes/component/Component.form';
+>>>>>>> upstream/master
 import ReCaptchaEditDisplay from './editForm/ReCaptcha.edit.display';
 
 export default function() {

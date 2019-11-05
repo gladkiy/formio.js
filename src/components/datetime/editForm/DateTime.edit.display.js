@@ -29,7 +29,11 @@ export default [
     valueProperty: 'name',
     dataSrc: 'url',
     data: {
+<<<<<<< HEAD
       url: 'https://formio.github.io/formio.js/resources/timezones.json'
+=======
+      url: 'https://cdn.form.io/timezones.json'
+>>>>>>> upstream/master
     },
     template: '<span>{{ item.label }}</span>',
     conditional: {
@@ -59,7 +63,11 @@ export default [
     label: 'Format',
     placeholder: 'Format',
     description: 'Use formats provided by <a href="https://github.com/angular-ui/bootstrap/tree/master/src/dateparser/docs#uibdateparsers-format-codes" target="_blank">DateParser Codes</a>',
+<<<<<<< HEAD
     tooltip: 'The date format for saving the value of this field. You can use formats provided by <a href="https://github.com/angular-ui/bootstrap/tree/master/src/dateparser/docs#uibdateparsers-format-codes" target="_blank">DateParser Codes</a>',
+=======
+    tooltip: 'The date format for displaying the datetime value.',
+>>>>>>> upstream/master
     weight: 52
   }
 ];

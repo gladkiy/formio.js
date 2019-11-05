@@ -10,6 +10,12 @@ const replace = require('gulp-replace');
 const rename = require('gulp-rename');
 const cleanCSS = require('gulp-clean-css');
 const eslint = require('gulp-eslint');
+<<<<<<< HEAD
+=======
+const insert = require('gulp-insert');
+const template = require('gulp-template');
+const packageJson = require('./package.json');
+>>>>>>> upstream/master
 
 // Clean lib folder.
 gulp.task('clean', require('del').bind(null, ['dist', 'lib']));
@@ -21,13 +27,52 @@ gulp.task('eslint', function eslintTask() {
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
+<<<<<<< HEAD
 
 // Run babel on source code.
 gulp.task('babel', gulp.series('eslint', function babelTask() {
+=======
+
+// Run babel on source code.
+gulp.task('babel', gulp.series('eslint', function babelTask() {
+  const FormioFilter = filter('**/Formio.js', { restore: true });
+  return gulp.src(['./src/**/*.js', '!./src/**/*.spec.js'])
+    .pipe(FormioFilter)
+    .pipe(replace('---VERSION---', packageJson.version))
+    .pipe(FormioFilter.restore)
+    .pipe(babel())
+    .pipe(gulp.dest('lib'));
+}));
+
+// Run babel without linting
+gulp.task('babel-nolint', gulp.series(function babelTask() {
+>>>>>>> upstream/master
   return gulp.src(['./src/**/*.js', '!./src/**/*.spec.js'])
     .pipe(babel())
     .pipe(gulp.dest('lib'));
 }));
+<<<<<<< HEAD
+=======
+
+// Compile all *.ejs files to pre-compiled templates and append *.js to the filename.
+gulp.task('templates', () =>
+  gulp.src('./src/**/*.ejs')
+    .pipe(template.precompile({
+      evaluate: /\{%([\s\S]+?)%\}/g,
+      interpolate: /\{\{([\s\S]+?)\}\}/g,
+      escape: /\{\{\{([\s\S]+?)\}\}\}/g,
+      variable: 'ctx'
+    }))
+    .pipe(insert.prepend('Object.defineProperty(exports, "__esModule", {\n' +
+      '  value: true\n' +
+      '});\n' +
+      'exports.default='))
+    .pipe(rename({
+      extname: '.ejs.js'
+    }))
+    .pipe(gulp.dest('lib'))
+);
+>>>>>>> upstream/master
 
 // Move font-awesome fonts into dist folder.
 gulp.task('builder-fonts', function builderFonts() {
@@ -56,7 +101,11 @@ const compileStyles = (styles, file) => {
 gulp.task('styles-form', function formStyles() {
   return compileStyles([
     './node_modules/flatpickr/dist/flatpickr.min.css',
+<<<<<<< HEAD
     './node_modules/choices.js/assets/styles/css/choices.min.css',
+=======
+    './node_modules/choices.js/public/assets/styles/choices.min.css',
+>>>>>>> upstream/master
     './node_modules/dialog-polyfill/dialog-polyfill.css',
     './src/sass/formio.form.scss'
   ], 'formio.form');
@@ -64,7 +113,11 @@ gulp.task('styles-form', function formStyles() {
 gulp.task('styles-builder', function builderStyles() {
   return compileStyles([
     './node_modules/flatpickr/dist/flatpickr.min.css',
+<<<<<<< HEAD
     './node_modules/choices.js/assets/styles/css/choices.min.css',
+=======
+    './node_modules/choices.js/public/assets/styles/choices.min.css',
+>>>>>>> upstream/master
     './node_modules/dialog-polyfill/dialog-polyfill.css',
     './node_modules/dragula/dist/dragula.css',
     './src/sass/formio.form.scss',
@@ -74,7 +127,11 @@ gulp.task('styles-builder', function builderStyles() {
 gulp.task('styles-full', gulp.series('builder-fonts', function fullStyles() {
   return compileStyles([
     './node_modules/flatpickr/dist/flatpickr.min.css',
+<<<<<<< HEAD
     './node_modules/choices.js/assets/styles/css/choices.min.css',
+=======
+    './node_modules/choices.js/public/assets/styles/choices.min.css',
+>>>>>>> upstream/master
     './node_modules/dialog-polyfill/dialog-polyfill.css',
     './node_modules/dragula/dist/dragula.css',
     './node_modules/font-awesome/css/font-awesome.css',
@@ -125,8 +182,19 @@ gulp.task('package-version', function() {
 // Copy over the dist folder into the lib folder.
 gulp.task('dist', () => gulp.src(['dist/**/*.*']).pipe(gulp.dest('lib/dist')));
 
+// Copy over the types folder and index.d.ts into the lib folder.
+gulp.task('types-index', () => gulp.src(['index.d.ts']).pipe(gulp.dest('lib')));
+gulp.task('types-folder', () => gulp.src(['types/**/*.*']).pipe(gulp.dest('lib/types')));
+gulp.task('types', gulp.parallel('types-index', 'types-folder'));
+
+// Copy over the readme and changelog files
+gulp.task('readme', () => gulp.src(['README.md', 'Changelog.md']).pipe(gulp.dest('lib')));
+
 // Watch for changes.
-gulp.task('watch', () => gulp.watch(['./src/**.js', './src/*/**.js'], ['formio.full.js']));
+gulp.task('watch', () => gulp.watch(['./src/*.js', './src/**/*.js'], gulp.series('scripts-full')));
+
+// Copy over the moment-timezones to the resource folder.
+gulp.task('timezones', () => gulp.src('./node_modules/moment-timezone/data/packed/latest.json').pipe(gulp.dest('./resources')));
 
 // Copy over the moment-timezones to the resource folder.
 gulp.task('timezones', () => gulp.src('./node_modules/moment-timezone/data/packed/latest.json').pipe(gulp.dest('./resources')));
@@ -135,6 +203,10 @@ gulp.task('timezones', () => gulp.src('./node_modules/moment-timezone/data/packe
 gulp.task('build', gulp.series(
   'clean',
   'babel',
+<<<<<<< HEAD
+=======
+  'templates',
+>>>>>>> upstream/master
   'package-version',
   gulp.parallel(
     'jquery',
@@ -154,8 +226,33 @@ gulp.task('build', gulp.series(
     'scripts-form',
     'scripts-full'
   ),
+<<<<<<< HEAD
   'dist'
 ));
+=======
+  'dist',
+  'types',
+  'readme'
+));
+
+// Create a new build (scripts only)
+gulp.task('rebuild-scripts', gulp.series(
+  'babel-nolint',
+  gulp.parallel(
+    'scripts-formio',
+    'scripts-utils',
+    'scripts-embed',
+    'scripts-contrib',
+    'scripts-form',
+    'scripts-full'
+  ),
+  'dist',
+  'types'
+));
+
+// Watch for changes.
+gulp.task('watch-rebuild', () => gulp.watch(['./src/*.js', './src/**/*.js'], gulp.series('rebuild-scripts')));
+>>>>>>> upstream/master
 
 // Default task. Build and watch.
 gulp.task('default', gulp.series('babel', 'scripts-full', 'watch'));

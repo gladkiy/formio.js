@@ -1,5 +1,24 @@
 export default [
   {
+<<<<<<< HEAD
+=======
+    key: 'inputMask',
+    ignore: true
+  },
+  {
+    key: 'allowMultipleMasks',
+    ignore: true
+  },
+  {
+    key: 'showWordCount',
+    ignore: true
+  },
+  {
+    key: 'showCharCount',
+    ignore: true
+  },
+  {
+>>>>>>> upstream/master
     type: 'textfield',
     input: true,
     weight: 310,

@@ -1,4 +1,4 @@
-import NestedComponent from '../nested/NestedComponent';
+import NestedComponent from '../_classes/nested/NestedComponent';
 
 export default class WellComponent extends NestedComponent {
   static schema(...extend) {
@@ -14,7 +14,7 @@ export default class WellComponent extends NestedComponent {
   static get builderInfo() {
     return {
       title: 'Well',
-      icon: 'fa fa-square-o',
+      icon: 'square-o',
       group: 'layout',
       documentation: 'http://help.form.io/userguide/#well',
       weight: 60,
@@ -27,6 +27,15 @@ export default class WellComponent extends NestedComponent {
   }
 
   get className() {
-    return `card card-body bg-faded well formio-component formio-component-well ${this.component.customClass}`;
+    return `${this.component.customClass}`;
+  }
+
+  get templateName() {
+    return 'well';
+  }
+
+  constructor(...args) {
+    super(...args);
+    this.noField = true;
   }
 }

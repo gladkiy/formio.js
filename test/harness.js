@@ -4,12 +4,50 @@ import _ from 'lodash';
 import EventEmitter from 'eventemitter2';
 import { expect } from 'chai';
 
-import i18Defaults from '../src/i18n';
-import WebformBuilder from '../src/WebformBuilder';
-import AllComponents from '../src/components';
-import Components from '../src/components/Components';
+import i18Defaults from '../lib/i18n';
+import WebformBuilder from '../lib/WebformBuilder';
+import AllComponents from '../lib/components';
+import Components from '../lib/components/Components';
 
 Components.setComponents(AllComponents);
+
+if (process) {
+  // Do not handle unhandled rejections.
+  process.on('unhandledRejection', (err, p) => {});
+}
+
+// Make sure that the Option is available from the window.
+global.Option = global.window.Option;
+
+// Stub out the toLocaleString method so it works in mocha.
+Number.prototype.toLocaleString = function(local, options) {
+  if (options && options.style === 'currency') {
+    switch (local) {
+      case 'en':
+      case 'en-US':
+        return '$100.00';
+      case 'en-GB':
+        return 'US$100.00';
+      case 'fr':
+        return '100,00 $US';
+      case 'de':
+        return '100,00 $';
+    }
+  }
+  else {
+    switch (local) {
+      case 'en':
+      case 'en-US':
+        return '12,345.679';
+      case 'en-GB':
+        return '12,345.679';
+      case 'fr':
+        return '12 345,679';
+      case 'de':
+        return '12.345,679';
+    }
+  }
+};
 
 let formBuilderElement = null;
 let formBuilder = null;
@@ -26,8 +64,13 @@ const Harness = {
     formBuilderElement = document.createElement('div');
     document.body.appendChild(formBuilderElement);
     formBuilder = new WebformBuilder(formBuilderElement, options);
+<<<<<<< HEAD
     formBuilder.form = { components: [] };
     formBuilder.builderReady.then(done);
+=======
+    formBuilder.form = {components: []};
+    formBuilder.webform.ready.then(() => done());
+>>>>>>> upstream/master
   },
 
   builderAfter() {
@@ -87,12 +130,17 @@ const Harness = {
         maxListeners: 0
       })
     }, options));
+    component.pristine = false;
     return new Promise((resolve, reject) => {
       i18next.init(i18Defaults, (err) => {
         if (err) {
           return reject(err);
         }
-        component.build();
+        // Need a parent element to redraw.
+        const parent = document.createElement('div');
+        const element = document.createElement('div');
+        parent.appendChild(element);
+        component.build(element);
         assert(Boolean(component.element), `No ${component.type} element created.`);
         return resolve(component);
       });
@@ -103,13 +151,13 @@ const Harness = {
       form.everyComponent((comp) => {
         if (hidden.includes(comp.component.key)) {
           // Should be hidden.
-          assert(comp.element.hidden, 'Element should not be visible');
-          assert.equal(comp.element.style.visibility, 'hidden');
+          assert(!comp.visible, 'Element should not be visible');
+          assert.equal(comp.element.childElementCount, 0, 'Hidden elements should not have children');
         }
         else {
           // Should be visible.
-          assert(!comp.element.hidden, 'Element should not be hidden');
-          assert((comp.element.style.visibility === '') || (comp.element.style.visibility === 'visible'), 'Element must be visible');
+          assert(comp.visible, 'Element should not be hidden');
+          assert.notEqual(comp.element.childElementCount, 0, 'Element must be visible');
         }
       });
       done();
@@ -132,7 +180,10 @@ const Harness = {
       bubbles: true,
       cancelable: true
     });
-    const element = this.testElement(component, query, true);
+    let element = query;
+    if (typeof query === 'string') {
+      element = this.testElement(component, query, true);
+    }
     return element.dispatchEvent(clickEvent);
   },
   testElements(component, query, number) {
@@ -191,7 +242,7 @@ const Harness = {
   testSetInput(component, input, output, visible, index = 0) {
     component.setValue(input);
     assert.deepEqual(component.getValue(), output);
-    assert.deepEqual(component.inputs[index].value, visible);
+    assert.deepEqual(component.refs.input[index].value, visible);
     return component;
   },
   testSubmission(form, submission, onChange) {
@@ -212,11 +263,50 @@ const Harness = {
     });
 
     onNext(form, 'change', () => {
+<<<<<<< HEAD
       form.submit().catch(done);
+=======
+      form.submit();
+>>>>>>> upstream/master
     });
 
     this.testSetGet(form, submission);
     assert.deepEqual(form.data, submission.data);
+<<<<<<< HEAD
+=======
+  },
+  testValid(component, value) {
+    return new Promise((resolve, reject) => {
+      component.on('componentChange', (change) => {
+        const valid = component.checkValidity();
+        if (valid) {
+          assert.equal(change.value, value);
+          resolve();
+        }
+        else {
+          reject('Component should be valid');
+        }
+      });
+      component.setValue(value);
+    });
+  },
+  testInvalid(component, value, field, error) {
+    return new Promise((resolve, reject) => {
+      component.on('componentChange', (change) => {
+        if(component.checkValidity()) {
+          reject('Component should not be valid');
+        }
+      });
+      component.on('componentError', (error) => {
+        assert.equal(error.component.key, field);
+        assert.equal(error.message, error);
+        resolve();
+      });
+
+      // Set the value.
+      component.setValue(value);
+    });
+>>>>>>> upstream/master
   },
   testComponent(component, test, done) {
     let testBad = true;
@@ -238,6 +328,7 @@ const Harness = {
     });
 
     // Set the value.
+    component.pristine = false;
     component.setValue(test.bad.value);
   },
   testWizardPrevPage(form, errors, onPrevPage) {
@@ -269,7 +360,11 @@ const Harness = {
     return form.nextPage();
   },
   testNumberBlur(cmp, inv, outv, display, index = 0) {
+<<<<<<< HEAD
     const input = _.get(cmp, ['inputs', index], {});
+=======
+    const input = _.get(cmp, ['refs', 'input', index], {});
+>>>>>>> upstream/master
     input.value = inv;
     input.dispatchEvent(new Event('blur'));
     assert.strictEqual(cmp.getValueAt(index), outv);

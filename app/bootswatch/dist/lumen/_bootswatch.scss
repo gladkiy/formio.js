@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Lumen 4.2.1
+=======
+// Lumen 4.3.1
+>>>>>>> upstream/master
 // Bootswatch
 
 
@@ -35,8 +39,11 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400
 
 .btn {
   @include shadow();
+<<<<<<< HEAD
   font-size: 12px;
   font-weight: bold;
+=======
+>>>>>>> upstream/master
   text-transform: uppercase;
 
   &:not(.disabled):hover {
@@ -70,7 +77,10 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400
 
   &-info {
     border-color: darken($info, 5%);
+<<<<<<< HEAD
     color: $white;
+=======
+>>>>>>> upstream/master
   }
 
   &-danger {
@@ -79,7 +89,10 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400
 
   &-warning {
     border-color: darken($warning, 5%);
+<<<<<<< HEAD
     color: $white;
+=======
+>>>>>>> upstream/master
   }
 
   &-light {
@@ -246,6 +259,18 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400
   box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.075);
 }
 
+<<<<<<< HEAD
+=======
+.input-group-sm {
+  > .input-group-prepend,
+  > .input-group-append {
+    .btn {
+      font-size: $btn-font-size-sm;
+    }
+  }
+}
+
+>>>>>>> upstream/master
 // Navs ========================================================================
 
 .nav {

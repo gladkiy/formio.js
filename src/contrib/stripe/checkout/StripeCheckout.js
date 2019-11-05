@@ -26,13 +26,19 @@ export default class StripeCheckoutComponent extends ButtonComponent {
     this.component.action = 'event';
   }
 
+  static get builderInfo() {
+    return {
+      group: false,
+      schema: ButtonComponent.schema()
+    };
+  }
+
   getValue() {
     return this.dataValue;
   }
 
   setValue(value, flags) {
-    flags = this.getFlags.apply(this, arguments);
-    return this.updateValue(flags);
+    return this.updateValue(value, flags);
   }
 
   /**

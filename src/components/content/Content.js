@@ -1,8 +1,12 @@
-import BaseComponent from '../base/Base';
+import Component from '../_classes/component/Component';
 
-export default class ContentComponent extends BaseComponent {
+export default class ContentComponent extends Component {
   static schema(...extend) {
+<<<<<<< HEAD
     return BaseComponent.schema({
+=======
+    return Component.schema({
+>>>>>>> upstream/master
       label: 'Content',
       type: 'content',
       key: 'content',
@@ -14,10 +18,11 @@ export default class ContentComponent extends BaseComponent {
   static get builderInfo() {
     return {
       title: 'Content',
-      group: 'basic',
-      icon: 'fa fa-html5',
+      group: 'layout',
+      icon: 'html5',
+      preview: false,
       documentation: 'http://help.form.io/userguide/#content-component',
-      weight: 100,
+      weight: 5,
       schema: ContentComponent.schema()
     };
   }
@@ -26,6 +31,7 @@ export default class ContentComponent extends BaseComponent {
     return ContentComponent.schema();
   }
 
+<<<<<<< HEAD
   setHTML() {
     this.htmlElement.innerHTML = this.interpolate(this.component.html);
   }
@@ -59,6 +65,33 @@ export default class ContentComponent extends BaseComponent {
 
     this.element.appendChild(this.htmlElement);
     this.attachLogic();
+=======
+  get content() {
+    return this.component.html ? this.interpolate(this.component.html, {
+      data: this.rootValue,
+      row: this.data
+    }) : '';
+  }
+
+  render() {
+    return super.render(this.renderTemplate('html', {
+      tag: 'div',
+      attrs: [],
+      content: this.content,
+    }));
+  }
+
+  attach(element) {
+    this.loadRefs(element, { html: 'single' });
+    if (this.component.refreshOnChange) {
+      this.on('change', () => {
+        if (this.refs.html) {
+          this.setContent(this.refs.html, this.content);
+        }
+      }, true);
+    }
+    return super.attach(element);
+>>>>>>> upstream/master
   }
 
   get emptyValue() {

@@ -1,14 +1,32 @@
 /* global $ */
 
 import _ from 'lodash';
+<<<<<<< HEAD
 import 'whatwg-fetch';
+=======
+import fetchPonyfill from 'fetch-ponyfill';
+>>>>>>> upstream/master
 import jsonLogic from 'json-logic-js';
 import moment from 'moment-timezone/moment-timezone';
 import jtz from 'jstimezonedetect';
 import { lodashOperators } from './jsonlogic/operators';
+<<<<<<< HEAD
 import Promise from 'native-promise-only';
 import { getValue } from './formUtils';
 import stringHash from 'string-hash';
+=======
+import NativePromise from 'native-promise-only';
+import dompurify from 'dompurify';
+import { getValue } from './formUtils';
+import Evaluator from './Evaluator';
+const interpolate = Evaluator.interpolate;
+const { fetch } = fetchPonyfill({
+  Promise: NativePromise
+});
+
+import BuilderUtils from './builder';
+export { BuilderUtils };
+>>>>>>> upstream/master
 
 export * from './formUtils';
 
@@ -45,7 +63,11 @@ export function evaluate(func, args, ret, tokenize) {
   if (!args.form && args.instance) {
     args.form = _.get(args.instance, 'root._form', {});
   }
+<<<<<<< HEAD
   args.form = _.cloneDeep(args.form);
+=======
+  const componentKey = component.key;
+>>>>>>> upstream/master
   if (typeof func === 'string') {
     if (ret) {
       func += `;return ${ret}`;
@@ -68,11 +90,19 @@ export function evaluate(func, args, ret, tokenize) {
     }
 
     try {
+<<<<<<< HEAD
       func = new Function(...params, func);
       args = _.values(args);
     }
     catch (err) {
       console.warn(`An error occured within the custom function for ${args.component.key}`, err);
+=======
+      func = Evaluator.evaluator(func, ...params);
+      args = _.values(args);
+    }
+    catch (err) {
+      console.warn(`An error occured within the custom function for ${componentKey}`, err);
+>>>>>>> upstream/master
       returnVal = null;
       func = false;
     }
@@ -83,7 +113,11 @@ export function evaluate(func, args, ret, tokenize) {
     }
     catch (err) {
       returnVal = null;
+<<<<<<< HEAD
       console.warn(`An error occured within custom function for ${args.component.key}`, err);
+=======
+      console.warn(`An error occured within custom function for ${componentKey}`, err);
+>>>>>>> upstream/master
     }
   }
   else if (typeof func === 'object') {
@@ -92,11 +126,19 @@ export function evaluate(func, args, ret, tokenize) {
     }
     catch (err) {
       returnVal = null;
+<<<<<<< HEAD
       console.warn(`An error occured within custom function for ${args.component.key}`, err);
     }
   }
   else if (func) {
     console.warn(`Unknown function type for ${args.component.key}`);
+=======
+      console.warn(`An error occured within custom function for ${componentKey}`, err);
+    }
+  }
+  else if (func) {
+    console.warn(`Unknown function type for ${componentKey}`);
+>>>>>>> upstream/master
   }
   return returnVal;
 }
@@ -324,7 +366,11 @@ export function setActionProperty(component, action, row, data, result, instance
       const textValue = action.property.component ? action[action.property.component] : action.text;
       const newValue = (instance && instance.interpolate) ?
         instance.interpolate(textValue, evalData) :
+<<<<<<< HEAD
         interpolate(textValue, evalData);
+=======
+        Evaluator.interpolate(textValue, evalData);
+>>>>>>> upstream/master
       if (newValue !== _.get(component, action.property.value, '')) {
         _.set(component, action.property.value, newValue);
       }
@@ -334,6 +380,7 @@ export function setActionProperty(component, action, row, data, result, instance
   return component;
 }
 
+<<<<<<< HEAD
 const templateCache = {};
 const templateHashCache = {};
 
@@ -379,18 +426,35 @@ export function interpolate(rawTemplate, data) {
   return template;
 }
 
+=======
+>>>>>>> upstream/master
 /**
  * Make a filename guaranteed to be unique.
  * @param name
+ * @param template
+ * @param evalContext
  * @returns {string}
  */
-export function uniqueName(name) {
-  const parts = name.toLowerCase().replace(/[^0-9a-z.]/g, '').split('.');
-  const fileName = parts[0];
-  const ext = parts.length > 1
+export function uniqueName(name, template, evalContext) {
+  template = template || '{{fileName}}-{{guid}}';
+  //include guid in template anyway, to prevent overwriting issue if filename matches existing file
+  if (!template.includes('{{guid}}')) {
+    template = `${template}-{{guid}}`;
+  }
+  const parts = name.split('.');
+  let fileName = parts.slice(0, parts.length - 1).join('.');
+  const extension = parts.length > 1
     ? `.${_.last(parts)}`
     : '';
-  return `${fileName.substr(0, 10)}-${guid()}${ext}`;
+  //allow only 100 characters from original name to avoid issues with filename length restrictions
+  fileName = fileName.substr(0, 100);
+  evalContext = Object.assign(evalContext || {}, {
+    fileName,
+    guid: guid()
+  });
+  //only letters, numbers, dots, dashes, underscores and spaces are allowed. Anything else will be replaced with dash
+  const uniqueName = `${Evaluator.interpolate(template, evalContext)}${extension}`.replace(/[^0-9a-zA-Z.\-_ ]/g, '-');
+  return uniqueName;
 }
 
 export function guid() {
@@ -428,7 +492,7 @@ export function getDateSetting(date) {
 
   dateSetting = null;
   try {
-    const value = (new Function('moment', `return ${date};`))(moment);
+    const value = Evaluator.evaluator(`return ${date};`, 'moment')(moment);
     if (typeof value === 'string') {
       dateSetting = moment(value);
     }
@@ -523,14 +587,22 @@ export function shouldLoadZones(timezone) {
 export function loadZones(timezone) {
   if (timezone && !shouldLoadZones(timezone)) {
     // Return non-resolving promise.
+<<<<<<< HEAD
     return new Promise(_.noop);
+=======
+    return new NativePromise(_.noop);
+>>>>>>> upstream/master
   }
 
   if (moment.zonesPromise) {
     return moment.zonesPromise;
   }
   return moment.zonesPromise = fetch(
+<<<<<<< HEAD
     'https://formio.github.io/formio.js/resources/latest.json',
+=======
+    'https://cdn.form.io/moment-timezone/data/packed/latest.json',
+>>>>>>> upstream/master
   ).then(resp => resp.json().then(zones => {
     moment.tz.load(zones);
     moment.zonesLoaded = true;
@@ -674,7 +746,7 @@ export function convertFormatToFlatpickr(format) {
 
     // Hours, minutes, seconds
     .replace('HH', 'H')
-    .replace('hh', 'h')
+    .replace('hh', 'G')
     .replace('mm', 'i')
     .replace('ss', 'S')
     .replace(/a/g, 'K');
@@ -687,7 +759,7 @@ export function convertFormatToFlatpickr(format) {
  */
 export function convertFormatToMoment(format) {
   return format
-    // Year conversion.
+  // Year conversion.
     .replace(/y/g, 'Y')
     // Day in month.
     .replace(/d/g, 'D')
@@ -699,11 +771,23 @@ export function convertFormatToMoment(format) {
 
 export function convertFormatToMask(format) {
   return format
+<<<<<<< HEAD
     // Short and long month replacement.
     .replace(/(MMM|MMMM)/g, 'MM')
     // Year conversion
     .replace(/[ydhmsHM]/g, '9')
     // AM/PM conversion
+=======
+  // Long month replacement.
+    .replace(/M{4}/g, 'MM')
+    // Initial short month conversion.
+    .replace(/M{3}/g, '***')
+    // Short month conversion if input as text.
+    .replace(/e/g, 'Q')
+    // Year conversion.
+    .replace(/[ydhmsHMG]/g, '9')
+    // AM/PM conversion.
+>>>>>>> upstream/master
     .replace(/a/g, 'AA');
 }
 
@@ -775,6 +859,9 @@ export function getNumberSeparators(lang = 'en') {
 }
 
 export function getNumberDecimalLimit(component) {
+  if (_.has(component, 'decimalLimit')) {
+    return _.get(component, 'decimalLimit');
+  }
   // Determine the decimal limit. Defaults to 20 but can be overridden by validate.step or decimalLimit settings.
   let decimalLimit = 20;
   const step = _.get(component, 'validate.step', 'any');
@@ -790,11 +877,11 @@ export function getNumberDecimalLimit(component) {
 }
 
 export function getCurrencyAffixes({
-  currency = 'USD',
-  decimalLimit,
-  decimalSeparator,
-  lang,
-}) {
+   currency = 'USD',
+   decimalLimit,
+   decimalSeparator,
+   lang,
+ }) {
   // Get the prefix and suffix from the localized string.
   let regex = '(.*)?100';
   if (decimalLimit) {
@@ -900,7 +987,11 @@ export function delay(fn, delay = 0, ...args) {
  */
 export function iterateKey(key) {
   if (!key.match(/(\d+)$/)) {
+<<<<<<< HEAD
     return `${key}2`;
+=======
+    return `${key}1`;
+>>>>>>> upstream/master
   }
 
   return key.replace(/(\d+)$/, function(suffix) {
@@ -928,7 +1019,14 @@ export function uniqueKey(map, base) {
  *
  * @return {number}
  */
+<<<<<<< HEAD
 export function bootstrapVersion() {
+=======
+export function bootstrapVersion(options) {
+  if (options.bootstrap) {
+    return options.bootstrap;
+  }
+>>>>>>> upstream/master
   if ((typeof $ === 'function') && (typeof $().collapse === 'function')) {
     return parseInt($.fn.collapse.Constructor.VERSION.split('.')[0], 10);
   }
@@ -1009,3 +1107,78 @@ export function observeOverload(callback, options = {}) {
     }
   };
 }
+<<<<<<< HEAD
+=======
+
+export function getContextComponents(context) {
+  var values = [];
+  context.utils.eachComponent(context.instance.options.editForm.components, (component) => {
+    if (component.key !== context.data.key) {
+      values.push({
+        label: component.label || component.key,
+        value: component.key
+      });
+    }
+  });
+  return values;
+}
+
+/**
+ * Sanitize an html string.
+ *
+ * @param string
+ * @returns {*}
+ */
+export function sanitize(string, options) {
+  // Dompurify configuration
+  const sanitizeOptions = {
+    ADD_ATTR: ['ref', 'target'],
+    USE_PROFILES: { html: true }
+  };
+  // Add attrs
+  if (options.sanitizeConfig && Array.isArray(options.sanitizeConfig.addAttr) && options.sanitizeConfig.addAttr.length > 0) {
+    options.sanitizeConfig.addAttr.forEach((attr) => {
+      sanitizeOptions.ADD_ATTR.push(attr);
+    });
+  }
+  // Add tags
+  if (options.sanitizeConfig && Array.isArray(options.sanitizeConfig.addTags) && options.sanitizeConfig.addTags.length > 0) {
+    sanitizeOptions.ADD_TAGS = options.sanitizeConfig.addTags;
+  }
+  // Allow tags
+  if (options.sanitizeConfig && Array.isArray(options.sanitizeConfig.allowedTags) && options.sanitizeConfig.allowedTags.length > 0) {
+    sanitizeOptions.ALLOWED_TAGS = options.sanitizeConfig.allowedTags;
+  }
+  // Allow attributes
+  if (options.sanitizeConfig && Array.isArray(options.sanitizeConfig.allowedAttrs) && options.sanitizeConfig.allowedAttrs.length > 0) {
+    sanitizeOptions.ALLOWED_ATTR = options.sanitizeConfig.allowedAttrs;
+  }
+  // Allowd URI Regex
+  if (options.sanitizeConfig && options.sanitizeConfig.allowedUriRegex) {
+    sanitizeOptions.ALLOWED_URI_REGEXP = options.sanitizeConfig.allowedUriRegex;
+  }
+  return dompurify.sanitize(string, sanitizeOptions);
+}
+
+export { Evaluator, interpolate };
+
+export function isInputComponent(componentJson) {
+  if (componentJson.input === false || componentJson.input === true) {
+    return componentJson.input;
+  }
+  switch (componentJson.type) {
+    case 'htmlelement':
+    case 'content':
+    case 'columns':
+    case 'fieldset':
+    case 'panel':
+    case 'table':
+    case 'tabs':
+    case 'well':
+    case 'button':
+      return false;
+    default:
+      return true;
+  }
+}
+>>>>>>> upstream/master

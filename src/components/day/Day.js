@@ -1,10 +1,14 @@
 import _ from 'lodash';
+<<<<<<< HEAD
 import BaseComponent from '../base/Base';
+=======
+import Field from '../_classes/field/Field';
+>>>>>>> upstream/master
 import { boolValue, getLocaleDateFormatInfo } from '../../utils/utils';
 
-export default class DayComponent extends BaseComponent {
+export default class DayComponent extends Field {
   static schema(...extend) {
-    return BaseComponent.schema({
+    return Field.schema({
       type: 'day',
       label: 'Day',
       key: 'day',
@@ -33,13 +37,14 @@ export default class DayComponent extends BaseComponent {
     return {
       title: 'Day',
       group: 'advanced',
-      icon: 'fa fa-calendar',
+      icon: 'calendar',
       documentation: 'http://help.form.io/userguide/#day',
       weight: 50,
       schema: DayComponent.schema()
     };
   }
 
+<<<<<<< HEAD
   constructor(component, options, data) {
     super(component, options, data);
     this.validators = this.validators.concat(['day', 'maxDate', 'minDate']);
@@ -48,6 +53,15 @@ export default class DayComponent extends BaseComponent {
       ? dateFormatInfo.dayFirst
       : this.component.dayFirst;
     this.hideInputLabels = this.component.hideInputLabels;
+=======
+  /**
+   * The empty value for day component.
+   *
+   * @return {'00/00/0000'}
+   */
+  get emptyValue() {
+    return '00/00/0000';
+>>>>>>> upstream/master
   }
 
   get dayRequired() {
@@ -78,18 +92,21 @@ export default class DayComponent extends BaseComponent {
     return DayComponent.schema();
   }
 
-  elementInfo() {
+  get inputInfo() {
     const info = super.elementInfo();
     info.type = 'input';
     info.attr.type = 'hidden';
-    info.changeEvent = 'change';
+    info.changeEvent = 'input';
     return info;
   }
 
-  get months() {
-    if (this._months) {
-      return this._months;
+  inputDefinition(name) {
+    let min, max;
+    if (name === 'day') {
+      min = 1;
+      max = 31;
     }
+<<<<<<< HEAD
     this._months = [
       { value: undefined, label: _.get(this.component, 'fields.month.placeholder') || (this.hideInputLabels ? this.t('Month') : '') },
       { value: 1, label: this.t('january') },
@@ -127,44 +144,94 @@ export default class DayComponent extends BaseComponent {
 
     if (this.dayRequired && day === 0) {
       return false;
+=======
+    if (name === 'month') {
+      min = 1;
+      max = 12;
+>>>>>>> upstream/master
     }
-
-    if (this.monthRequired && month < 0) {
-      return false;
+    if (name === 'year') {
+      min = _.get(this.component, 'fields.year.minYear', 1900) || 1900;
+      max = _.get(this.component, 'fields.year.maxYear', 2030) || 1900;
     }
+    return {
+      type: 'input',
+      ref: name,
+      attr: {
+        id: `${this.component.key}-${name}`,
+        class: `form-control ${this.transform('class', `formio-day-component-${name}`)}`,
+        type: this.component.fields[name].type === 'select' ? 'select' : 'number',
+        placeholder: this.component.fields[name].placeholder,
+        step: 1,
+        min,
+        max,
+      }
+    };
+  }
 
+<<<<<<< HEAD
     if (this.yearRequired && year === 0) {
       return false;
     }
+=======
+  selectDefinition(name) {
+    return {
+      multiple: false,
+      ref: name,
+      widget: 'html5',
+      attr: {
+        id: `${this.component.key}-${name}`,
+        class: 'form-control',
+        name,
+        lang: this.options.language
+      }
+    };
+  }
+>>>>>>> upstream/master
 
-    if (!boolValue(setting)) {
-      return true;
+  get days() {
+    if (this._days) {
+      return this._days;
     }
-    return !this.isEmpty(value);
+    this._days = [
+      { value: '', label: _.get(this.component, 'fields.day.placeholder', '') }
+    ];
+    for (let x = 1; x <= 31; x++) {
+      this._days.push({
+        value: x,
+        label: x.toString()
+      });
+    }
+    return this._days;
   }
 
-  createDayInput(subinputAtTheBottom) {
-    const dayColumn = this.ce('div', {
-      class: 'form-group col col-xs-3'
-    });
-
-    const id = `${this.component.key}-day`;
-
-    const dayLabel = !this.hideInputLabels
-      ? this.ce('label', {
-        for: id,
-        class: _.get(this.component, 'fields.day.required', false) ? 'field-required' : ''
-      })
-      : null;
-
-    if (dayLabel) {
-      dayLabel.appendChild(this.text(this.t('day')));
-      this.setSubinputLabelStyle(dayLabel);
+  get months() {
+    if (this._months) {
+      return this._months;
     }
+    this._months = [
+      { value: '', label: _.get(this.component, 'fields.month.placeholder') || (this.hideInputLabels ? this.t('Month') : '') },
+      { value: 1, label: 'January' },
+      { value: 2, label: 'February' },
+      { value: 3, label: 'March' },
+      { value: 4, label: 'April' },
+      { value: 5, label: 'May' },
+      { value: 6, label: 'June' },
+      { value: 7, label: 'July' },
+      { value: 8, label: 'August' },
+      { value: 9, label: 'September' },
+      { value: 10, label: 'October' },
+      { value: 11, label: 'November' },
+      { value: 12, label: 'December' }
+    ];
+    return this._months;
+  }
 
-    if (dayLabel && !subinputAtTheBottom) {
-      dayColumn.appendChild(dayLabel);
+  get years() {
+    if (this._years) {
+      return this._years;
     }
+<<<<<<< HEAD
 
     const dayInputWrapper = this.ce('div');
     this.dayInput = this.ce('input', {
@@ -185,34 +252,74 @@ export default class DayComponent extends BaseComponent {
 
     if (dayLabel && subinputAtTheBottom) {
       dayColumn.appendChild(dayLabel);
+=======
+    this._years = [
+      { value: '', label: _.get(this.component, 'fields.year.placeholder', '') }
+    ];
+    const minYears = _.get(this.component, 'fields.year.minYear', 1900) || 1900;
+    const maxYears = _.get(this.component, 'fields.year.maxYear', 2030) || 2030;
+    for (let x = minYears; x <= maxYears; x++) {
+      this._years.push({
+        value: x,
+        label: x.toString()
+      });
+>>>>>>> upstream/master
     }
-
-    return dayColumn;
+    return this._years;
   }
 
-  createMonthInput(subinputAtTheBottom) {
-    const monthColumn = this.ce('div', {
-      class: 'form-group col col-xs-4'
-    });
+  addInputError(message, dirty, elements) {
+    super.addInputError(message, dirty, [this.refs.day, this.refs.month, this.refs.year]);
+    super.addInputError(message, dirty, elements);
+  }
 
-    const id = `${this.component.key}-month`;
+  removeInputError(elements) {
+    super.removeInputError([this.refs.day, this.refs.month, this.refs.year]);
+    super.removeInputError(elements);
+  }
 
-    const monthLabel = !this.hideInputLabels
-      ? this.ce('label', {
-        for: id,
-        class: _.get(this.component, 'fields.month.required', false) ? 'field-required' : ''
-      })
-      : null;
+  init() {
+    super.init();
+    this.validators = this.validators.concat(['day', 'maxDate', 'minDate']);
+    const dateFormatInfo = getLocaleDateFormatInfo(this.options.language);
+    this.dayFirst = this.component.useLocaleSettings
+      ? dateFormatInfo.dayFirst
+      : this.component.dayFirst;
+  }
 
-    if (monthLabel) {
-      monthLabel.appendChild(this.text(this.t('month')));
-      this.setSubinputLabelStyle(monthLabel);
+  render() {
+    return super.render(this.renderTemplate('day', {
+      dayFirst: this.dayFirst,
+      showDay: this.showDay,
+      showMonth: this.showMonth,
+      showYear: this.showYear,
+      day: this.renderField('day'),
+      month: this.renderField('month'),
+      year: this.renderField('year'),
+    }));
+  }
+
+  renderField(name) {
+    if (this.component.fields[name].type === 'select') {
+      return this.renderTemplate('select', {
+        input: this.selectDefinition(name),
+        selectOptions: this[`${name}s`].reduce((html, option) =>
+          html + this.renderTemplate('selectOption', {
+            option,
+            selected: false,
+            attrs: {}
+          }), ''
+        ),
+      });
     }
-
-    if (monthLabel && !subinputAtTheBottom) {
-      monthColumn.appendChild(monthLabel);
+    else {
+      return this.renderTemplate('input', {
+        input: this.inputDefinition(name)
+      });
     }
+  }
 
+<<<<<<< HEAD
     const monthInputWrapper = this.ce('div');
     this.monthInput = this.ce('select', {
       class: 'form-control',
@@ -230,43 +337,58 @@ export default class DayComponent extends BaseComponent {
       self.dayInput.max = maxDay;
       if (day > maxDay) {
         self.dayInput.value = self.dayInput.max;
+=======
+  attach(element) {
+    this.loadRefs(element, { day: 'single', month: 'single', year: 'single', input: 'multiple' });
+    const superAttach = super.attach(element);
+    if (this.shouldDisabled) {
+      this.setDisabled(this.refs.day, true);
+      this.setDisabled(this.refs.month, true);
+      this.setDisabled(this.refs.year, true);
+      if (this.refs.input) {
+        this.refs.input.forEach((input) => this.setDisabled(input, true));
+>>>>>>> upstream/master
       }
-      self.updateValue();
-    };
-    monthInputWrapper.appendChild(this.monthInput);
-    this.setSubinputStyle(monthInputWrapper);
-    monthColumn.appendChild(monthInputWrapper);
-
-    if (monthLabel && subinputAtTheBottom) {
-      monthColumn.appendChild(monthLabel);
     }
-
-    return monthColumn;
+    else {
+      this.addEventListener(this.refs.day, 'input', () => this.updateValue(null, {
+        modified: true
+      }));
+      // TODO: Need to rework this to work with day select as well.
+      // Change day max input when month changes.
+      this.addEventListener(this.refs.month, 'input', () => {
+        const maxDay = parseInt(new Date(this.refs.year.value, this.refs.month.value, 0).getDate(), 10);
+        const day = this.getFieldValue('day');
+        this.refs.day.max = maxDay;
+        if (day > maxDay) {
+          this.refs.day.value = this.refs.day.max;
+        }
+        this.updateValue(null, {
+          modified: true
+        });
+      });
+      this.addEventListener(this.refs.year, 'input', () => this.updateValue(null, {
+        modified: true
+      }));
+      this.addEventListener(this.refs.input, this.info.changeEvent, () => this.updateValue(null, {
+        modified: true
+      }));
+    }
+    this.setValue(this.dataValue);
+    return superAttach;
   }
 
-  createYearInput(subinputAtTheBottom) {
-    const yearColumn = this.ce('div', {
-      class: 'form-group col col-xs-5'
-    });
-
-    const id = `${this.component.key}-year`;
-
-    const yearLabel = !this.hideInputLabels
-      ? this.ce('label', {
-        for: id,
-        class: _.get(this.component, 'fields.year.required', false) ? 'field-required' : ''
-      })
-      : null;
-
-    if (yearLabel) {
-      yearLabel.appendChild(this.text(this.t('year')));
-      this.setSubinputLabelStyle(yearLabel);
+  validateRequired(setting, value) {
+    const { day, month, year } = this.parts;
+    if (this.dayRequired && !day) {
+      return false;
     }
 
-    if (yearLabel && !subinputAtTheBottom) {
-      yearColumn.appendChild(yearLabel);
+    if (this.monthRequired && !month) {
+      return false;
     }
 
+<<<<<<< HEAD
     const yearInputWrapper = this.ce('div');
     this.yearInput = this.ce('input', {
       class: 'form-control',
@@ -286,99 +408,32 @@ export default class DayComponent extends BaseComponent {
 
     if (yearLabel && subinputAtTheBottom) {
       yearColumn.appendChild(yearLabel);
+=======
+    if (this.yearRequired && !year) {
+      return false;
+>>>>>>> upstream/master
     }
 
-    return yearColumn;
+    if (!boolValue(setting)) {
+      return true;
+    }
+    return !this.isEmpty(value);
   }
 
   set disabled(disabled) {
     super.disabled = disabled;
-    if (!this.yearInput || !this.monthInput || !this.dayInput) {
+    if (!this.refs.year || !this.refs.month || !this.refs.day) {
       return;
     }
     if (disabled) {
-      this.yearInput.setAttribute('disabled', 'disabled');
-      this.monthInput.setAttribute('disabled', 'disabled');
-      this.dayInput.setAttribute('disabled', 'disabled');
+      this.refs.year.setAttribute('disabled', 'disabled');
+      this.refs.month.setAttribute('disabled', 'disabled');
+      this.refs.day.setAttribute('disabled', 'disabled');
     }
     else {
-      this.yearInput.removeAttribute('disabled');
-      this.monthInput.removeAttribute('disabled');
-      this.dayInput.removeAttribute('disabled');
-    }
-  }
-
-  createInput(container) {
-    const inputGroup = this.ce('div', {
-      class: 'input-group row',
-      style: 'width: 100%'
-    });
-    const subinputAtTheBottom = this.component.inputsLabelPosition === 'bottom';
-    const [dayColumn, monthColumn, yearColumn] = this.createInputs(subinputAtTheBottom);
-
-    // Add the columns to the day select in the right order.
-    if (this.dayFirst && this.showDay) {
-      inputGroup.appendChild(dayColumn);
-    }
-    if (this.showMonth) {
-      inputGroup.appendChild(monthColumn);
-    }
-    if (!this.dayFirst && this.showDay) {
-      inputGroup.appendChild(dayColumn);
-    }
-    if (this.showYear) {
-      inputGroup.appendChild(yearColumn);
-    }
-
-    const input = this.ce(this.info.type, this.info.attr);
-    this.addInput(input, inputGroup);
-    this.errorContainer = container;
-    this.setInputStyles(inputGroup);
-    container.appendChild(inputGroup);
-  }
-
-  createInputs(subinputAtTheBottom) {
-    return [
-      this.createDayInput(subinputAtTheBottom),
-      this.createMonthInput(subinputAtTheBottom),
-      this.createYearInput(subinputAtTheBottom),
-    ];
-  }
-
-  setSubinputLabelStyle(label) {
-    const { inputsLabelPosition } = this.component;
-
-    if (inputsLabelPosition === 'left') {
-      _.assign(label.style, {
-        float: 'left',
-        width: '30%',
-        marginRight: '3%',
-        textAlign: 'left',
-      });
-    }
-
-    if (inputsLabelPosition === 'right') {
-      _.assign(label.style, {
-        float: 'right',
-        width: '30%',
-        marginLeft: '3%',
-        textAlign: 'right',
-      });
-    }
-  }
-
-  setSubinputStyle(input) {
-    const { inputsLabelPosition } = this.component;
-
-    if (['left', 'right'].includes(inputsLabelPosition)) {
-      input.style.width = '67%';
-
-      if (inputsLabelPosition === 'left') {
-        input.style.marginLeft = '33%';
-      }
-      else {
-        input.style.marginRight = '33%';
-      }
+      this.refs.year.removeAttribute('disabled');
+      this.refs.month.removeAttribute('disabled');
+      this.refs.day.removeAttribute('disabled');
     }
   }
 
@@ -395,6 +450,7 @@ export default class DayComponent extends BaseComponent {
       return null;
     }
     const parts = value.split('/');
+<<<<<<< HEAD
     let day, month, year;
     if (this.component.dayFirst && this.showDay) {
       day = parts.shift();
@@ -411,7 +467,55 @@ export default class DayComponent extends BaseComponent {
     if (this.showYear) {
       year = parts.shift();
       this.yearInput.value = year === '0000' ? undefined : parseInt(year, 10);
+=======
+    let day;
+    if (this.component.dayFirst) {
+      day = parts.shift();
     }
+    const month = parts.shift();
+    if (!this.component.dayFirst) {
+      day = parts.shift();
+    }
+    const year = parts.shift();
+
+    if (this.refs.day && this.showDay) {
+      this.refs.day.value = day === '00' ? '' : parseInt(day, 10);
+    }
+    if (this.refs.month && this.showMonth) {
+      this.refs.month.value = month === '00' ? '' : parseInt(month, 10);
+    }
+    if (this.refs.year && this.showYear) {
+      this.refs.year.value = year === '0000' ? '' : parseInt(year, 10);
+>>>>>>> upstream/master
+    }
+  }
+
+  getFieldValue(name) {
+    const parts = this.dataValue.split('/');
+    let val = 0;
+
+    switch (name) {
+      case 'month':
+        val = parts[this.dayFirst ? 1 : 0];
+        break;
+      case 'day':
+        val = parts[this.dayFirst ? 0 : 1];
+        break;
+      case 'year':
+        val = parts[2];
+        break;
+    }
+
+    val = parseInt(val, 10);
+    return (!_.isNaN(val) && _.isNumber(val)) ? val : 0;
+  }
+
+  get parts() {
+    return {
+      day: this.getFieldValue('day'),
+      month: this.getFieldValue('month'),
+      year: this.getFieldValue('year'),
+    };
   }
 
   /**
@@ -453,6 +557,7 @@ export default class DayComponent extends BaseComponent {
     if (defaultValue) {
       defaults = defaultValue.split('/').map(x => parseInt(x, 10));
     }
+<<<<<<< HEAD
     if (this.showDay && this.dayInput) {
       day = parseInt(this.dayInput.value, 10);
     }
@@ -475,6 +580,36 @@ export default class DayComponent extends BaseComponent {
     if (!day && !month && !year) {
       return undefined;
     }
+=======
+
+    if (this.showDay && this.refs.day) {
+      day = parseInt(this.refs.day.value, 10);
+    }
+    if (day === undefined || _.isNaN(day)) {
+      day = defaults[DAY] && !_.isNaN(defaults[DAY]) ? defaults[DAY] : 0;
+    }
+
+    if (this.showMonth && this.refs.month) {
+      // Months are 0 indexed.
+      month = parseInt(this.refs.month.value, 10);
+    }
+    if (month === undefined || _.isNaN(month)) {
+      month = defaults[MONTH] && !_.isNaN(defaults[MONTH]) ? defaults[MONTH] : 0;
+    }
+
+    if (this.showYear && this.refs.year) {
+      year = parseInt(this.refs.year.value);
+    }
+    if (year === undefined || _.isNaN(year)) {
+      year = defaults[YEAR] && !_.isNaN(defaults[YEAR]) ? defaults[YEAR] : 0;
+    }
+
+    let result;
+    if (!day && !month && !year) {
+      return null;
+    }
+
+>>>>>>> upstream/master
     //add trailing zeros
     day = day.toString().padStart(2, 0);
     month = month.toString().padStart(2, 0);
@@ -502,7 +637,16 @@ export default class DayComponent extends BaseComponent {
    * @returns {Date}
    */
   get validationValue() {
+<<<<<<< HEAD
     return this.date;
+=======
+    return this.dataValue;
+  }
+
+  getValue() {
+    const result = super.getValue();
+    return (!result) ? this.dataValue : result;
+>>>>>>> upstream/master
   }
 
   /**
@@ -514,35 +658,57 @@ export default class DayComponent extends BaseComponent {
   getValueAt(index) {
     const date = this.date;
     if (date) {
+<<<<<<< HEAD
       this.inputs[index].value = date;
       return this.inputs[index].value;
+=======
+      this.refs.input[index].value = date;
+      return this.refs.input[index].value;
+>>>>>>> upstream/master
     }
     else {
-      this.inputs[index].value = '';
+      this.refs.input[index].value = '';
       return null;
     }
   }
 
   /**
+<<<<<<< HEAD
    * Get the view of the date.
+=======
+   * Get the input value of the date.
+>>>>>>> upstream/master
    *
    * @param value
    * @return {null}
    */
+<<<<<<< HEAD
   getView(value) {
+=======
+  getValueAsString(value) {
+>>>>>>> upstream/master
     return this.getDate(value);
   }
 
   focus() {
     if (this.dayFirst && this.showDay || !this.dayFirst && !this.showMonth && this.showDay) {
-      this.dayInput.focus();
+      this.refs.day.focus();
     }
     else if (this.dayFirst && !this.showDay && this.showMonth || !this.dayFirst && this.showMonth) {
-      this.monthInput.focus();
+      this.refs.month.focus();
     }
     else if (!this.showDay && !this.showDay && this.showYear) {
-      this.yearInput.focus();
+      this.refs.year.focus();
     }
+  }
+
+  isPartialDay(value) {
+    if (!value) {
+      return false;
+    }
+    const [DAY, MONTH, YEAR] = this.component.dayFirst ? [0, 1, 2] : [1, 0, 2];
+    const values = value.split('/');
+    return (values[DAY] === '00' || values[MONTH] === '00' || values[YEAR] === '0000');
   }
 
   isPartialDay(value) {

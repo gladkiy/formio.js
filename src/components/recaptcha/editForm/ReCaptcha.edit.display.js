@@ -21,7 +21,13 @@ export default [
     label: 'Button Key',
     tooltip: 'Specify key of button on this form that this reCAPTCHA should react to',
     type: 'textfield',
+<<<<<<< HEAD
     customConditional: 'show = data.eventType === "buttonClick";',
+=======
+    customConditional(context) {
+      return context.data.eventType === 'buttonClick';
+    },
+>>>>>>> upstream/master
     weight: 660
   },
   {
@@ -37,6 +43,7 @@ export default [
     ignore: true
   },
   {
+<<<<<<< HEAD
     key: 'labelWidth',
     ignore: true
   },
@@ -45,6 +52,8 @@ export default [
     ignore: true
   },
   {
+=======
+>>>>>>> upstream/master
     key: 'placeholder',
     ignore: true
   },
@@ -99,5 +108,13 @@ export default [
   {
     key: 'alwaysEnabled',
     ignore: true
+<<<<<<< HEAD
   }
+=======
+  },
+  {
+    key: 'tableView',
+    ignore: true
+  },
+>>>>>>> upstream/master
 ];

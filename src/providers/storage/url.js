@@ -1,8 +1,12 @@
-import Promise from 'native-promise-only';
+import NativePromise from 'native-promise-only';
 
 const url = (formio) => {
   const xhrRequest = (url, name, query, data, options, onprogress) => {
+<<<<<<< HEAD
     return new Promise((resolve, reject) => {
+=======
+    return new NativePromise((resolve, reject) => {
+>>>>>>> upstream/master
       const xhr = new XMLHttpRequest();
       const json = (typeof data === 'string');
       const fd = new FormData();
@@ -64,7 +68,11 @@ const url = (formio) => {
 
       //Overrides previous request props
       if (options) {
+<<<<<<< HEAD
         const parsedOptions = JSON.parse(options);
+=======
+        const parsedOptions = typeof options === 'string' ? JSON.parse(options) : options;
+>>>>>>> upstream/master
         for (const prop in parsedOptions) {
           xhr[prop] = parsedOptions[prop];
         }
@@ -76,14 +84,22 @@ const url = (formio) => {
   return {
     title: 'Url',
     name: 'url',
+<<<<<<< HEAD
     uploadFile(file, name, dir, progressCallback, url, options) {
+=======
+    uploadFile(file, name, dir, progressCallback, url, options, fileKey) {
+>>>>>>> upstream/master
       const uploadRequest = function(form) {
         return xhrRequest(url, name, {
           baseUrl: encodeURIComponent(formio.projectUrl),
           project: form ? form.project : '',
           form: form ? form._id : ''
         }, {
+<<<<<<< HEAD
           file,
+=======
+          [fileKey]:file,
+>>>>>>> upstream/master
           name,
           dir
         }, options, progressCallback).then(response => {
@@ -109,6 +125,25 @@ const url = (formio) => {
         return uploadRequest();
       }
     },
+<<<<<<< HEAD
+=======
+    deleteFile(fileInfo) {
+      return new NativePromise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('DELETE', fileInfo.url, true);
+        xhr.onload = () => {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            resolve('File deleted');
+          }
+          else {
+            reject(xhr.response || 'Unable to delete file');
+          }
+        };
+        xhr.send(null);
+      });
+    },
+
+>>>>>>> upstream/master
     downloadFile(file) {
       if (file.private) {
         if (formio.submissionId && file.data) {
@@ -118,7 +153,11 @@ const url = (formio) => {
       }
 
       // Return the original as there is nothing to do.
+<<<<<<< HEAD
       return Promise.resolve(file);
+=======
+      return NativePromise.resolve(file);
+>>>>>>> upstream/master
     }
   };
 };

@@ -1,8 +1,15 @@
 import _ from 'lodash';
+<<<<<<< HEAD
 import BaseComponent from '../base/Base';
 export default class DateTimeComponent extends BaseComponent {
+=======
+import moment from 'moment';
+import Input from '../_classes/input/Input';
+import FormioUtils from '../../utils';
+export default class DateTimeComponent extends Input {
+>>>>>>> upstream/master
   static schema(...extend) {
-    return BaseComponent.schema({
+    return Input.schema({
       type: 'datetime',
       label: 'Date / Time',
       key: 'dateTime',
@@ -11,6 +18,7 @@ export default class DateTimeComponent extends BaseComponent {
       allowInput: true,
       enableDate: true,
       enableTime: true,
+      defaultValue: '',
       defaultDate: '',
       displayInTimezone: 'viewer',
       timezone: '',
@@ -41,7 +49,7 @@ export default class DateTimeComponent extends BaseComponent {
     return {
       title: 'Date / Time',
       group: 'advanced',
-      icon: 'fa fa-calendar-plus-o',
+      icon: 'calendar',
       documentation: 'http://help.form.io/userguide/#datetime',
       weight: 40,
       schema: DateTimeComponent.schema()
@@ -80,7 +88,10 @@ export default class DateTimeComponent extends BaseComponent {
       enableTime: _.get(this.component, 'enableTime', true),
       noCalendar: !_.get(this.component, 'enableDate', true),
       format: this.component.format,
+<<<<<<< HEAD
       defaultDate: this.component.defaultDate,
+=======
+>>>>>>> upstream/master
       hourIncrement: _.get(this.component, 'timePicker.hourStep', 1),
       minuteIncrement: _.get(this.component, 'timePicker.minuteStep', 5),
       time_24hr: time24hr,
@@ -89,6 +100,7 @@ export default class DateTimeComponent extends BaseComponent {
       maxDate: _.get(this.component, 'datePicker.maxDate')
     };
     /* eslint-enable camelcase */
+<<<<<<< HEAD
 
     // Add the validators date.
     this.validators.push('date');
@@ -119,5 +131,76 @@ export default class DateTimeComponent extends BaseComponent {
   // This select component can handle multiple items on its own.
   createWrapper() {
     return false;
+=======
+
+    // Add the validators date.
+    this.validators.push('date');
+  }
+
+  performInputMapping(input) {
+    if (input.widget && input.widget.settings) {
+      input.widget.settings.submissionTimezone = this.submissionTimezone;
+    }
+    return input;
+  }
+
+  get defaultSchema() {
+    return DateTimeComponent.schema();
+  }
+
+  get defaultValue() {
+    let defaultValue = super.defaultValue;
+    if (!defaultValue && this.component.defaultDate) {
+      defaultValue = FormioUtils.getDateSetting(this.component.defaultDate);
+      defaultValue = defaultValue ? defaultValue.toISOString() : '';
+    }
+    return defaultValue;
+  }
+
+  get emptyValue() {
+    return '';
+  }
+
+  isEmpty(value = this.dataValue) {
+    if (value && (value.toString() === 'Invalid Date')) {
+      return true;
+    }
+    return super.isEmpty(value);
+  }
+
+  formatValue(input) {
+    const result = moment.utc(input).toISOString();
+    return result === 'Invalid date' ? input : result;
+  }
+
+  isEqual(valueA, valueB = this.dataValue) {
+    const format = FormioUtils.convertFormatToMoment(this.component.format);
+    return (this.isEmpty(valueA) && this.isEmpty(valueB))
+      || moment.utc(valueA).format(format) === moment.utc(valueB).format(format);
+  }
+
+  createWrapper() {
+    return false;
+  }
+
+  checkValidity(data, dirty, rowData) {
+    if (this.refs.input) {
+      this.refs.input.forEach((input) => {
+        if (input.widget && input.widget.enteredDate) {
+          dirty = true;
+        }
+      });
+    }
+    return super.checkValidity(data, dirty, rowData);
+  }
+
+  focus() {
+    if (this.refs.input && this.refs.input[0]) {
+      const sibling = this.refs.input[0].nextSibling;
+      if (sibling) {
+        sibling.focus();
+      }
+    }
+>>>>>>> upstream/master
   }
 }

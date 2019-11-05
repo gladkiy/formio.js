@@ -35,7 +35,10 @@ export default class CalendarWidget extends InputWidget {
       dateFormat: ISO_8601_FORMAT,
       useLocaleSettings: false,
       language: 'us-en',
+<<<<<<< HEAD
       defaultDate: null,
+=======
+>>>>>>> upstream/master
       hourIncrement: 1,
       minuteIncrement: 5,
       time_24hr: false,
@@ -60,7 +63,10 @@ export default class CalendarWidget extends InputWidget {
     else if (this.settings.time_24hr) {
       this.settings.format = this.settings.format.replace(/hh:mm a$/g, 'HH:mm');
     }
+<<<<<<< HEAD
     this.component.suffix = true;
+=======
+>>>>>>> upstream/master
   }
 
   /**
@@ -82,7 +88,11 @@ export default class CalendarWidget extends InputWidget {
   }
 
   attach(input) {
+<<<<<<< HEAD
     super.attach(input);
+=======
+    const superAttach = super.attach(input);
+>>>>>>> upstream/master
     if (input && !input.getAttribute('placeholder')) {
       input.setAttribute('placeholder', this.settings.format);
     }
@@ -90,7 +100,11 @@ export default class CalendarWidget extends InputWidget {
     const dateFormatInfo = getLocaleDateFormatInfo(this.settings.language);
     this.defaultFormat = {
       date: dateFormatInfo.dayFirst ? 'd/m/Y ' : 'm/d/Y ',
+<<<<<<< HEAD
       time: 'h:i K'
+=======
+      time: 'G:i K'
+>>>>>>> upstream/master
     };
 
     this.closedOn = 0;
@@ -98,11 +112,23 @@ export default class CalendarWidget extends InputWidget {
     this.valueMomentFormat = convertFormatToMoment(this.valueFormat);
     this.settings.minDate = getDateSetting(this.settings.minDate);
     this.settings.maxDate = getDateSetting(this.settings.maxDate);
+<<<<<<< HEAD
     this.settings.defaultDate = getDateSetting(this.settings.defaultDate);
     this.settings.altFormat = convertFormatToFlatpickr(this.settings.format);
     this.settings.dateFormat = convertFormatToFlatpickr(this.settings.dateFormat);
     this.settings.onChange = () => this.emit('update');
     this.settings.onClose = () => (this.closedOn = Date.now());
+=======
+    this.settings.altFormat = convertFormatToFlatpickr(this.settings.format);
+    this.settings.dateFormat = convertFormatToFlatpickr(this.settings.dateFormat);
+    this.settings.onChange = () => this.emit('update');
+    this.settings.onClose = () => {
+      this.closedOn = Date.now();
+      if (this.calendar) {
+        this.emit('blur');
+      }
+    };
+>>>>>>> upstream/master
     this.settings.formatDate = (date, format) => {
       // Only format this if this is the altFormat and the form is readOnly.
       if (this.settings.readOnly && (format === this.settings.altFormat)) {
@@ -128,6 +154,10 @@ export default class CalendarWidget extends InputWidget {
         this.calendar.setDate(this.calendar._input.value, true, this.settings.altFormat)
       );
     }
+<<<<<<< HEAD
+=======
+    return superAttach;
+>>>>>>> upstream/master
   }
 
   get timezone() {
@@ -149,18 +179,25 @@ export default class CalendarWidget extends InputWidget {
     return CalendarWidget.defaultSettings;
   }
 
+<<<<<<< HEAD
   addSuffix(container) {
     const suffix = this.ce('span', {
       class: 'input-group-addon',
       style: 'cursor: pointer'
     });
     suffix.appendChild(this.getIcon(this.settings.enableDate ? 'calendar' : 'time'));
+=======
+  addSuffix(suffix) {
+>>>>>>> upstream/master
     this.addEventListener(suffix, 'click', () => {
       if (this.calendar && !this.calendar.isOpen && ((Date.now() - this.closedOn) > 200)) {
         this.calendar.open();
       }
     });
+<<<<<<< HEAD
     container.appendChild(suffix);
+=======
+>>>>>>> upstream/master
     return suffix;
   }
 
@@ -205,6 +242,7 @@ export default class CalendarWidget extends InputWidget {
   }
 
   /**
+<<<<<<< HEAD
    * Get the default date for the calendar.
    * @return {*}
    */
@@ -218,6 +256,8 @@ export default class CalendarWidget extends InputWidget {
   }
 
   /**
+=======
+>>>>>>> upstream/master
    * Return the date value.
    *
    * @param date
@@ -274,7 +314,11 @@ export default class CalendarWidget extends InputWidget {
     }
   }
 
+<<<<<<< HEAD
   getView(value, format) {
+=======
+  getValueAsString(value, format) {
+>>>>>>> upstream/master
     format = format || this.dateFormat;
     if (this.settings.saveAs === 'text') {
       return this.getDateValue(value, format);
@@ -292,6 +336,12 @@ export default class CalendarWidget extends InputWidget {
 
   destroy() {
     super.destroy();
+<<<<<<< HEAD
     this.calendar.destroy();
+=======
+    if (this.calendar) {
+      this.calendar.destroy();
+    }
+>>>>>>> upstream/master
   }
 }

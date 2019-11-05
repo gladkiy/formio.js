@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Spacelab 4.2.1
+=======
+// Spacelab 4.3.1
+>>>>>>> upstream/master
 // Bootswatch
 
 
@@ -24,6 +28,7 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:400italic,700
   }
 
   &.bg-primary {
+<<<<<<< HEAD
     @include btn-shadow($primary);
   }
 
@@ -33,6 +38,17 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:400italic,700
 
   &.bg-light {
     @include btn-shadow($light);
+=======
+    @include btn-shadow(map-get($theme-colors, "primary"));
+  }
+
+  &.bg-dark {
+    @include btn-shadow(map-get($theme-colors, "secondary"));
+  }
+
+  &.bg-light {
+    @include btn-shadow(map-get($theme-colors, "light"));
+>>>>>>> upstream/master
 
     .nav-link,
     .navbar-brand {
@@ -54,6 +70,7 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:400italic,700
 .btn {
   text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.1);
 
+<<<<<<< HEAD
   &-primary {
     @include btn-shadow($primary);
 
@@ -131,6 +148,20 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:400italic,700
   &.active {
     background-image: none;
     @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+=======
+  &-link {
+    text-shadow: none;
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @include btn-shadow($value);
+  }
+
+  .btn-#{$color}:not(.disabled):hover {
+    @include btn-shadow(darken($value, 4%));
+>>>>>>> upstream/master
   }
 }
 

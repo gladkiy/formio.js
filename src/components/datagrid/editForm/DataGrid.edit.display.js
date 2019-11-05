@@ -1,5 +1,9 @@
 export default [
   {
+    key: 'placeholder',
+    ignore: true
+  },
+  {
     type: 'checkbox',
     label: 'Disable Adding / Removing Rows',
     key: 'disableAddingRemovingRows',
@@ -7,8 +11,24 @@ export default [
     weight: 405,
     input: true,
     clearOnHide: false,
+<<<<<<< HEAD
     customConditional: 'show = !data.enableRowGroups',
     calculateValue: 'value = data.enableRowGroups ? true : data.disableAddingRemovingRows;',
+=======
+    customConditional(context) {
+      return !context.data.enableRowGroups;
+    },
+    calculateValue(context) {
+      return context.data.enableRowGroups ? true : context.data.disableAddingRemovingRows;
+    },
+  },
+  {
+    type: 'checkbox',
+    label: 'Allow Reorder',
+    key: 'reorder',
+    weight: 407,
+    input: true,
+>>>>>>> upstream/master
   },
   {
     type: 'textfield',
@@ -18,7 +38,9 @@ export default [
     placeholder: 'Add Another',
     weight: 410,
     input: true,
-    customConditional: 'show = !data.disableAddingRemovingRows'
+    customConditional(context) {
+      return !context.data.disableAddingRemovingRows;
+    }
   },
   {
     type: 'select',
@@ -36,6 +58,7 @@ export default [
       ]
     },
     weight: 411,
+<<<<<<< HEAD
     customConditional: 'show = !data.disableAddingRemovingRows'
   },
   {
@@ -53,6 +76,11 @@ export default [
     weight: 412,
     input: true,
     customConditional: 'show = !data.disableAddingRemovingRows'
+=======
+    customConditional(context) {
+      return !context.data.disableAddingRemovingRows;
+    }
+>>>>>>> upstream/master
   },
   {
     type: 'checkbox',
@@ -88,6 +116,10 @@ export default [
     type: 'datagrid',
     input: true,
     key: 'rowGroups',
+<<<<<<< HEAD
+=======
+    reorder: true,
+>>>>>>> upstream/master
     components: [
       {
         label: 'Label',
